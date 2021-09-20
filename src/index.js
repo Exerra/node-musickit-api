@@ -5,6 +5,9 @@ const rootPath = "https://api.music.apple.com/v1"
 let token
 let auth
 
+/**
+ * @author Exerra
+ */
 class MusicKit {
 	/**
 	 * 
@@ -31,9 +34,21 @@ class MusicKit {
 		this.updateAuth(token)
 	}
 
+	/**
+	 * 
+	 * @private 
+	 */
 	updateAuth(paramToken) {
 		auth = `Bearer ${paramToken}`
 	}
+
+	/**
+	 * 
+	 * This callback returns either an error or the response from the Apple Music API
+	 * @callback requestCallback
+	 * @param {*} err The error
+	 * @param {*} data The response
+	 */
 
 	/**
 	 * 
@@ -41,12 +56,12 @@ class MusicKit {
 	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {Object[]} type The type of thing to search. Find about possible types in https://developer.apple.com/documentation/applemusicapi/search_for_catalog_resources
 	 * @param {string} searchquery The search query
-	 * @param {object} cb Callback
+	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Apple Music API response
+	 * @author Exerra
 	 */
 	search(country, type, searchquery, cb, limit = 1) {
 		let reqUrl = `${rootPath}/catalog/${country}/search`
-		/* let auth = `Bearer ${token}` */
 
 		axios({
 			"method": "GET",
@@ -66,15 +81,16 @@ class MusicKit {
 	/**
 	 * 
 	 * Searches a song by its ID
-	 * @param {string} country A country to look in
+	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the song
-	 * @param {function} cb Callback
+	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Song info
+	 * @author Exerra
 	 */
 	searchSong(country, id, cb) {
 
 		let reqUrl = `${rootPath}/catalog/${country}/songs/${id}`
-		/* let auth = `Bearer ${token}` */
+
 		if (cb) {
 			axios({
 				"method": "GET",
