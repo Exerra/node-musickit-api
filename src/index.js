@@ -80,14 +80,14 @@ class MusicKit {
 
 	/**
 	 * 
-	 * Searches a song by its ID
+	 * Gets a song by its ID
 	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the song
 	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Song info
 	 * @author Exerra
 	 */
-	searchSong(country, id, cb) {
+	getSong(country, id, cb) {
 
 		let reqUrl = `${rootPath}/catalog/${country}/songs/${id}`
 
