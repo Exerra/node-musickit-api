@@ -3,6 +3,7 @@ const axios = require('axios')
 
 const rootPath = "https://api.music.apple.com/v1"
 let token
+let auth
 
 class MusicKit {
 	/**
@@ -23,6 +24,12 @@ class MusicKit {
 				kid: credentials.keyId
 			}
 		});
+
+		this.updateAuth(token)
+	}
+
+	updateAuth(paramToken) {
+		auth = `Bearer ${paramToken}`
 	}
 
 	/**
@@ -34,10 +41,7 @@ class MusicKit {
 	 */
 	search(country, type, searchquery, cb, limit = 1) {
 		let reqUrl = `${rootPath}/catalog/${country}/search`
-		let auth = `Bearer ${token}`
-
-		console.log(`country: ${country}, searchquery: ${searchquery}, limit: ${limit}`)
-		console.log(type)
+		/* let auth = `Bearer ${token}` */
 
 		axios({
 			"method": "GET",
@@ -64,7 +68,7 @@ class MusicKit {
 	searchSong(country, id, cb) {
 
 		let reqUrl = `${rootPath}/catalog/${country}/songs/${id}`
-		let auth = `Bearer ${token}`
+		/* let auth = `Bearer ${token}` */
 		if (cb) {
 			axios({
 				"method": "GET",
