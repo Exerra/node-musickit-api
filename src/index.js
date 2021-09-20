@@ -57,6 +57,7 @@ class MusicKit {
 	 * @param {Object[]} type The type of thing to search. Find about possible types in https://developer.apple.com/documentation/applemusicapi/search_for_catalog_resources
 	 * @param {string} searchquery The search query
 	 * @param {requestCallback} cb Callback
+	 * @param {number} [limit=1] The amount of responses to get (defaults to 1)
 	 * @returns {Object} Apple Music API response
 	 * @author Exerra
 	 */
@@ -90,24 +91,73 @@ class MusicKit {
 	getSong(country, id, cb) {
 
 		let reqUrl = `${rootPath}/catalog/${country}/songs/${id}`
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+	}
 
-		if (cb) {
-			axios({
-				"method": "GET",
-				"url": reqUrl,
-				"headers": {
-					"Authorization": auth
-				}
-			}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
-		} else {
-			axios({
-				"method": "GET",
-				"url": reqUrl,
-				"headers": {
-					"Authorization": auth
-				}
-			}).then(res => { return res.data })
-		}
+	/**
+	 * 
+	 * Gets an album by its ID
+	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} id ID of the album
+	 * @param {requestCallback} cb Callback
+	 * @returns {Object} Album info
+	 * @author Exerra
+	 */
+	getAlbum(country, id, cb) {
+		let reqUrl = `${rootPath}/catalog/${country}/albums/${id}`
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+	}
+
+	/**
+	 * 
+	 * Gets a music video by its ID
+	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} id ID of the music video
+	 * @param {requestCallback} cb Callback
+	 * @returns {Object} Music video info
+	 * @author Exerra
+	 */
+	 getMusicVideo(country, id, cb) {
+		let reqUrl = `${rootPath}/catalog/${country}/music-videos/${id}`
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+	}
+
+	/**
+	 * 
+	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} id ID of the artist
+	 * @param {requestCallback} cb Callback
+	 * @returns {Object} Artist info
+	 * @see The official documentation {@link https://developer.apple.com/documentation/applemusicapi/get_a_catalog_artist}
+	 * @author Exerra
+	 */
+	getArtist(country, id, cb) {
+		let reqUrl = `${rootPath}/catalog/${country}/artists/${id}`
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
 	}
 }
 
