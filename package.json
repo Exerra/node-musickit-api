@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Exerra/node-musickit-api.git"
+  },
   "keywords": ["node", "musickit", "node-musickit", "apple", "apple music", "music", "api"],
   "author": "Exerra",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.4",
     "jsonwebtoken": "^8.5.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Exerra/node-musickit-api/issues"
+  },
+  "homepage": "https://github.com/Exerra/node-musickit-api"
 }
