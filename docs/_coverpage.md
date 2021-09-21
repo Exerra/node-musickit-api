@@ -1,6 +1,6 @@
 <!-- ![logo](https://www.apple.com/v/apple-music/o/images/shared/og__dcaiwstv206e_image.png) -->
 
-# node-musickit-api <small>v1.0.1</small>
+# node-musickit-api <small>v1.1.0</small>
 
 > Wrapper for the Apple Music API
 

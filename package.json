@@ -1,6 +1,6 @@
 {
   "name": "node-musickit-api",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A wrapper for the Apple Music API written in NodeJS",
   "main": "index.js",
   "repository": {
@@ -20,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/Exerra/node-musickit-api/issues"
   },
-  "homepage": "https://github.com/Exerra/node-musickit-api"
+  "homepage": "https://musickit.js.org/#/"
 }
