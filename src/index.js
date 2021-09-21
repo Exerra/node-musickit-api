@@ -78,6 +78,8 @@ class MusicKit {
 		}).then(res => cb(null, res.data)).catch(err => cb(err, null))
 	}
 
+	//* ----------------------------- SONGS -----------------------------
+
 
 	/**
 	 * 
@@ -124,6 +126,8 @@ class MusicKit {
 		}).then(res => cb(null, res.data)).catch(err => cb(err, null))
 	}
 
+	//* ----------------------------- ALBUMS -----------------------------
+
 	/**
 	 * 
 	 * Gets an album by its ID
@@ -144,6 +148,8 @@ class MusicKit {
 		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
 	}
 
+	//* ----------------------------- MUSIC VIDEO -----------------------------
+
 	/**
 	 * 
 	 * Gets a music video by its ID
@@ -163,6 +169,8 @@ class MusicKit {
 			}
 		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
 	}
+
+	//* ----------------------------- ARTISTS -----------------------------
 
 	/**
 	 * 
