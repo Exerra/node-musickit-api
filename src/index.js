@@ -53,7 +53,7 @@ class MusicKit {
 	/**
 	 * 
 	 * Searches for [type]
-	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {Object[]} type The type of thing to search. Find about possible types in https://developer.apple.com/documentation/applemusicapi/search_for_catalog_resources
 	 * @param {string} searchquery The search query
 	 * @param {requestCallback} cb Callback
@@ -82,7 +82,7 @@ class MusicKit {
 	/**
 	 * 
 	 * Gets a song by its ID
-	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the song
 	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Song info
@@ -103,7 +103,7 @@ class MusicKit {
 	/**
 	 * 
 	 * Gets an album by its ID
-	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the album
 	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Album info
@@ -123,7 +123,7 @@ class MusicKit {
 	/**
 	 * 
 	 * Gets a music video by its ID
-	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the music video
 	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Music video info
@@ -142,7 +142,7 @@ class MusicKit {
 
 	/**
 	 * 
-	 * @param {string} country The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the artist
 	 * @param {requestCallback} cb Callback
 	 * @returns {Object} Artist info
