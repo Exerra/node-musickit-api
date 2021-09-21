@@ -103,3 +103,39 @@ MusicKit.getSongByISRC("lv", "USUM71805289", (err, data) => {
 | Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
 | ISRC         | USUM71805289        | This is the ISRC of the song                                                                                                                                                                     |
 | Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_song#3002792) |
+
+### Get a song by ISRC
+To get a music video by ISRC, you can do
+
+```js
+MusicKit.getMusicVideoByISRC("lv", "USUM71805289", (err, data) => {
+ if (err) return console.log(err)
+ // Code
+})
+```
+
+#### Explanation
+
+| Parameter  | Example           | What it does                                                                                                                                                                                   |
+|------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
+| ISRC         | USUM71805289        | This is the ISRC of the music video                                                                                                                                                                     |
+| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
+
+### Get an album by UPC
+To get an album by UPC, you can do
+
+```js
+MusicKit.getAlbumByUPC("lv", "00602567807995", (err, data) => {
+ if (err) return console.log(err)
+ // Code
+})
+```
+
+#### Explanation
+
+| Parameter  | Example           | What it does                                                                                                                                                                                   |
+|------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
+| UPC         | 00602567807995        | This is the UPC of the album                                                                                                                                                                     |
+| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
