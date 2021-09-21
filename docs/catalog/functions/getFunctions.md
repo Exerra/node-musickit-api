@@ -104,7 +104,7 @@ MusicKit.getSongByISRC("lv", "USUM71805289", (err, data) => {
 | ISRC         | USUM71805289        | This is the ISRC of the song                                                                                                                                                                     |
 | Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_song#3002792) |
 
-### Get a song by ISRC
+### Get a music video by ISRC
 To get a music video by ISRC, you can do
 
 ```js
