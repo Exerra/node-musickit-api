@@ -1,0 +1,27 @@
+# node-musickit-api
+A wrapper for the Apple Music API written in NodeJS
+
+## Quick start
+
+### Installation
+Installation is easy! Just do `npm i node-musickit-api` (or `yarn add node-musickit-api` if you use the superior package manager) and enjoy!
+
+### Actually using node-musickit-api
+
+Here is a quick example that should get you up and running in no time!
+```js
+const MusicKit = require('node-musickit-api')
+const fs = require('fs')
+
+var music = new MusicKit({
+  key: fs.readFileSync('apple_private_key.p8').toString(), // Reads your private key
+  teamId: "", // This is your developer account's team ID
+  keyId: "" // This is the keys ID
+})
+
+MusicKit.search("lv", "songs", "Ariana grande no tears left to cry", (err, data) => {
+ if (err) return console.log(err)
+ fs.writeFileSync('./test/test-search.json', JSON.stringify(data,0,4))
+}, 5)
+```
+To learn more about what all of this does, read the documentation!
