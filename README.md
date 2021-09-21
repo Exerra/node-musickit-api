@@ -12,7 +12,7 @@ This package needs to be initialized using a constructor.
 To do so, you can do 
 ```js
 const MusicKit = require('node-musickit-api')
-const fs = require('fs)
+const fs = require('fs')
 
 var music = new MusicKit({
   key: fs.readFileSync('apple_private_key.p8').toString(), // Reads your private key
