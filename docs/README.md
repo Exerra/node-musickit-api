@@ -1,16 +1,16 @@
-# node-musickit-api
+# ${package}
 A wrapper for the Apple Music API written in NodeJS
 
 ## Quick start
 
 ### Installation
-Installation is easy! Just do `npm i node-musickit-api` (or `yarn add node-musickit-api` if you use the superior package manager) and enjoy!
+Installation is easy! Just do `npm i ${package}` (or `yarn add ${package}` if you use the superior package manager) and enjoy!
 
-### Actually using node-musickit-api
+### Actually using ${package}
 
 Here is a quick example that should get you up and running in no time!
 ```js
-const MusicKit = require('node-musickit-api')
+const MusicKit = require('${package}')
 const fs = require('fs')
 
 var music = new MusicKit({

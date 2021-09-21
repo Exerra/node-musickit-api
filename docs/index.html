@@ -21,9 +21,41 @@
       themeColor: "#F8283E",
       subMaxLevel: 3,
       autoHeader: true,
+      /* footer: {
+        copy: '<span>Acme &copy; 2020</span>',
+        auth: 'by Me',
+        pre: '<hr/>',
+        style: 'text-align: right;',
+        class: 'className',
+      }, */
+      plugins: [
+        function(hook, vm) {
+
+          var footer = [
+            '<hr/>',
+            '<footer style="text-align: right;">',
+            '<span><a href="https://github.com/Exerra">Exerra</a> &copy;2021</span><br>',
+            '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
+            '</footer>'
+          ].join('');
+
+          // Replaces all "${package}" sightings with the package name
+          hook.beforeEach(function(md) {
+            md = md.replaceAll('${package}', "node-musickit-api")
+            return md
+          })
+
+          hook.afterEach(function(html) {
+            return html + footer;
+          });
+        }
+      ],
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
 </body>
 </html>

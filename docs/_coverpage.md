@@ -8,7 +8,7 @@
 - No bullshit
 - Promises soon?
 
-[GitHub](https://github.com/docsifyjs/docsify/)
-[Get Started](#docsify)
+[GitHub](https://github.com/exerra/node-musickit-api)
+[Get Started](#node-musickit-api)
 
 ![color](#F5F4F6)
