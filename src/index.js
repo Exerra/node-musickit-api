@@ -148,6 +148,29 @@ class MusicKit {
 		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
 	}
 
+	/**
+	 * 
+	 * Gets an album by its UPC value
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} upc UPC of the album
+	 * @param {requestCallback} cb Callback
+	 * @returns {Object} Album info
+	 * @author Exerra
+	 */
+	 getAlbumByUPC(storefront, upc, cb) {
+		let reqUrl = `${rootPath}/catalog/${storefront}/albums`
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"params": {
+				"filter[upc]": upc
+			},
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+	}
+
 	//* ----------------------------- MUSIC VIDEO -----------------------------
 
 	/**
@@ -164,6 +187,29 @@ class MusicKit {
 		axios({
 			"method": "GET",
 			"url": reqUrl,
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+	}
+
+	/**
+	 * 
+	 * Gets a music video by its ISRC
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} isrc ISRC of the music video
+	 * @param {requestCallback} cb Callback
+	 * @returns {Object} Music video info
+	 * @author Exerra
+	 */
+	 getMusicVideoByISRC(storefront, isrc, cb) {
+		let reqUrl = `${rootPath}/catalog/${storefront}/music-videos`
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"params": {
+				"filter[isrc]": isrc,
+			},
 			"headers": {
 				"Authorization": auth
 			}
