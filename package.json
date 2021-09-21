@@ -10,6 +10,9 @@
   "keywords": ["node", "musickit", "node-musickit", "apple", "apple music", "music", "api"],
   "author": "Exerra <exerra@exerra.xyz> (https://exerra.xyz)",
   "license": "MIT",
+  "engines": { 
+    "node" : ">=12" 
+  },
   "dependencies": {
     "axios": "^0.21.4",
     "jsonwebtoken": "^8.5.1"
