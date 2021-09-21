@@ -62,6 +62,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	search(country, type, searchquery, cb, limit = 1) {
+
+		if (!country || !type || !searchquery || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the search function in https://musickit.js.org/#/catalog/functions/search")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${country}/search`
 
 		axios({
@@ -92,6 +97,10 @@ class MusicKit {
 	 */
 	getSong(storefront, id, cb) {
 
+		if (!storefront || !id || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getSong function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-song")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/songs/${id}`
 		axios({
 			"method": "GET",
@@ -112,6 +121,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	getSongByISRC(storefront, isrc, cb) {
+
+		if (!storefront || !isrc || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getSongByISRC function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-song-by-isrc")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/songs`
 
 		axios({
@@ -138,6 +152,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	getAlbum(storefront, id, cb) {
+
+		if (!storefront || !id || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getAlbum function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-an-album")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/albums/${id}`
 		axios({
 			"method": "GET",
@@ -158,6 +177,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	 getAlbumByUPC(storefront, upc, cb) {
+
+		if (!storefront || !upc || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getAlbumByUPC function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-an-album-by-upc")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/albums`
 		axios({
 			"method": "GET",
@@ -183,6 +207,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	 getMusicVideo(storefront, id, cb) {
+
+		if (!storefront || !id || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getMusicVideo function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-music-video")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/music-videos/${id}`
 		axios({
 			"method": "GET",
@@ -203,6 +232,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	 getMusicVideoByISRC(storefront, isrc, cb) {
+
+		if (!storefront || !isrc || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getMusicVideoByISRC function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-music-video-by-isrc")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/music-videos`
 		axios({
 			"method": "GET",
@@ -228,6 +262,11 @@ class MusicKit {
 	 * @author Exerra
 	 */
 	getArtist(storefront, id, cb) {
+
+		if (!storefront || !id || !cb) {
+			throw new Error("At least one required parameter is missing. Find out about how to use the getArtist function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-an-artist")
+		}
+
 		let reqUrl = `${rootPath}/catalog/${storefront}/artists/${id}`
 		axios({
 			"method": "GET",
