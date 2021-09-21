@@ -1,5 +1,6 @@
 * [node-musickit-api](/)
 * [Initialization](/initialization.md)
-* Functions
-	* [Search](functions/search.md)
-	* [Get](functions/getFunctions.md)
+* Catalog routes
+	* Functions
+		* [Search](catalog/functions/search.md)
+		* [Get](catalog/functions/getFunctions.md)
