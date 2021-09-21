@@ -6,6 +6,10 @@ Currently there aren't any checks to see if they are passed (shame on me), but t
 
 Also all of the functions are *extremely* similar, but I will still make them into seperate sections because why not 
 
+## Requirements
+
+As with any function, you are required to initialize ${package}. To find out how to do so, click [here](/initialization.md)
+
 ## Get a song
 To get a song, you can do
 
