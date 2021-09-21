@@ -2,7 +2,6 @@
 This section focuses on how to get songs, albums, music videos and artists
 
 All of the functions in this category take in 3 parameters, of which **all** are necessary.
-Currently there aren't any checks to see if they are passed (shame on me), but they are coming in v1.1.0
 
 Also all of the functions are *extremely* similar, but I will still make them into seperate sections because why not 
 

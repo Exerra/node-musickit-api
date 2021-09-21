@@ -29,9 +29,6 @@ To learn more about what all of this does, read the documentation!
 ## TODO
 This section will focus on things that are in my TODO
 
-### Handling missing parameters
-Currently there is no error handling for missing parameters (yes yes, shame on me), so I will try to make up for it.
-
 ### Adding personalized routes
 Currently ${package} doesn't support personalized routes (api.music.apple.com/v1/me)
 
