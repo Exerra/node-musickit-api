@@ -7,7 +7,7 @@ Installation is easy! Just do `npm i node-musickit-api` (or `yarn add node-music
 ## Usage
 This section will detail various ways of using this package. A documentation website + better code examples coming soon :)
 
-### Initializing
+### Initialization
 This package needs to be initialized using a constructor.
 To do so, you can do 
 ```js
