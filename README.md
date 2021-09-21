@@ -7,6 +7,20 @@ Installation is easy! Just do `npm i node-musickit-api` (or `yarn add node-music
 ## Usage
 This section will detail various ways of using this package. A documentation website + better code examples coming soon :)
 
+### Initializing
+This package needs to be initialized using a constructor.
+To do so, you can do 
+```js
+const MusicKit = require('node-musickit-api')
+const fs = require('fs)
+
+var music = new MusicKit({
+  key: fs.readFileSync('apple_private_key.p8').toString(), // Reads your private key
+  teamId: "", // This is your developer account's team ID
+  keyId: "" // This is the keys ID
+})
+```
+
 ### Searching
 To search using keywords you can do
 
