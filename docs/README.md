@@ -25,3 +25,9 @@ MusicKit.search("lv", "songs", "Ariana grande no tears left to cry", (err, data)
 }, 5)
 ```
 To learn more about what all of this does, read the documentation!
+
+## TODO
+This section will focus on things that are in my TODO
+
+### Handling missing parameters
+Currently there is no error handling for missing parameters (yes yes, shame on me), so I will try to make up for it.

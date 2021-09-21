@@ -88,9 +88,9 @@ class MusicKit {
 	 * @returns {Object} Song info
 	 * @author Exerra
 	 */
-	getSong(country, id, cb) {
+	getSong(storefront, id, cb) {
 
-		let reqUrl = `${rootPath}/catalog/${country}/songs/${id}`
+		let reqUrl = `${rootPath}/catalog/${storefront}/songs/${id}`
 		axios({
 			"method": "GET",
 			"url": reqUrl,
@@ -102,6 +102,30 @@ class MusicKit {
 
 	/**
 	 * 
+	 * Gets a song by its ISRC
+	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+	 * @param {string} isrc ISRC of the song
+	 * @param {requestCallback} cb Callback
+	 * @returns {Object} Song info
+	 * @author Exerra
+	 */
+	getSongByISRC(storefront, isrc, cb) {
+		let reqUrl = `${rootPath}/catalog/${storefront}/songs`
+
+		axios({
+			"method": "GET",
+			"url": reqUrl,
+			"params": {
+				"filter[isrc]": isrc,
+			},
+			"headers": {
+				"Authorization": auth
+			}
+		}).then(res => cb(null, res.data)).catch(err => cb(err, null))
+	}
+
+	/**
+	 * 
 	 * Gets an album by its ID
 	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
 	 * @param {string} id ID of the album
@@ -109,8 +133,8 @@ class MusicKit {
 	 * @returns {Object} Album info
 	 * @author Exerra
 	 */
-	getAlbum(country, id, cb) {
-		let reqUrl = `${rootPath}/catalog/${country}/albums/${id}`
+	getAlbum(storefront, id, cb) {
+		let reqUrl = `${rootPath}/catalog/${storefront}/albums/${id}`
 		axios({
 			"method": "GET",
 			"url": reqUrl,
@@ -129,8 +153,8 @@ class MusicKit {
 	 * @returns {Object} Music video info
 	 * @author Exerra
 	 */
-	 getMusicVideo(country, id, cb) {
-		let reqUrl = `${rootPath}/catalog/${country}/music-videos/${id}`
+	 getMusicVideo(storefront, id, cb) {
+		let reqUrl = `${rootPath}/catalog/${storefront}/music-videos/${id}`
 		axios({
 			"method": "GET",
 			"url": reqUrl,
@@ -149,8 +173,8 @@ class MusicKit {
 	 * @see The official documentation {@link https://developer.apple.com/documentation/applemusicapi/get_a_catalog_artist}
 	 * @author Exerra
 	 */
-	getArtist(country, id, cb) {
-		let reqUrl = `${rootPath}/catalog/${country}/artists/${id}`
+	getArtist(storefront, id, cb) {
+		let reqUrl = `${rootPath}/catalog/${storefront}/artists/${id}`
 		axios({
 			"method": "GET",
 			"url": reqUrl,
