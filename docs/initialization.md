@@ -41,7 +41,7 @@ In the example I showed, the key was stored in plain text (or if you use fs, pla
 
 ### How to use MusicKit with dotenv
 
-[Dotenv](https://npmjs.org/package/dotenv) is a wonderful tool that loads your projects .env file into environment variables (since Node doesn't).
+[Dotenv](https://npmjs.org/package/dotenv) is a wonderful tool that loads your projects `.env` file into environment variables (since Node doesn't).
 
 To use it with ${package}, do all the steps above BUT instead of adding the strings in the constructor, do this
 
@@ -57,17 +57,17 @@ const MusicKitConst = new MusicKit({
 })
 ```
 
-.env:
+`.env`
 ```env
 MUSICKIT_KEY="-----BEGIN PRIVATE KEY-----\nSTRING\nSTRING\nSTRING\n-----END PRIVATE KEY-----"
 MUSICKIT_TEAMID="blahblahdeeblah"
 MUSICKIT_KEYID="blahblahdeeblah"
 ```
 
-Now, you may be wondering: "Why make MUSICKIT_KEY one line that gets seperated with \n, but still replace \n with \n in the JS file?"
+Now, you may be wondering: "Why make `MUSICKIT_KEY` one line that gets seperated with `\n`, but still replace `\n` with `\n` in the JS file?"
 
-Well dear reader, it is because in my testing the \n in .env doesn't work. Maybe it is only an issue for me, but I am showing you how it worked for me.
+Well dear reader, it is because in my testing the `\n` in `.env` doesn't work. Maybe it is only an issue for me, but I am showing you how it worked for me.
 
-Also, add .env to your .gitignore (otherwise it just defeats the whole purpose of .env)
+Also, add `.env` to your `.gitignore` (otherwise it just defeats the whole purpose of `.env`)
 
 Anyway, now we are done with the *safe* method of initializing MusicKit, hooray!

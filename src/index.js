@@ -80,7 +80,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch(err => cb(err, null))
+		}).then(res => cb(null, res.data)).catch(err => cb(err.response.data, null))
 	}
 
 	//* ----------------------------- SONGS -----------------------------
@@ -108,7 +108,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+		}).then(res => cb(null, res.data)).catch((err) => cb(err.response.data, null))
 	}
 
 	/**
@@ -137,7 +137,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch(err => cb(err, null))
+		}).then(res => cb(null, res.data)).catch(err => cb(err.response.data, null))
 	}
 
 	//* ----------------------------- ALBUMS -----------------------------
@@ -164,7 +164,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+		}).then(res => cb(null, res.data)).catch((err) => cb(err.response.data, null))
 	}
 
 	/**
@@ -192,7 +192,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+		}).then(res => cb(null, res.data)).catch((err) => cb(err.response.data, null))
 	}
 
 	//* ----------------------------- MUSIC VIDEO -----------------------------
@@ -219,7 +219,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+		}).then(res => cb(null, res.data)).catch((err) => cb(err.response.data, null))
 	}
 
 	/**
@@ -247,7 +247,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+		}).then(res => cb(null, res.data)).catch((err) => cb(err.response.data, null))
 	}
 
 	//* ----------------------------- ARTISTS -----------------------------
@@ -274,7 +274,7 @@ class MusicKit {
 			"headers": {
 				"Authorization": auth
 			}
-		}).then(res => cb(null, res.data)).catch((err) => cb(err, null))
+		}).then(res => cb(null, res.data)).catch((err) => cb(err.response.data, null))
 	}
 }
 
