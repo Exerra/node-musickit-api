@@ -9,7 +9,7 @@ You will **need** to be enrolled in the Apple developer program, then you will n
 1. Import the package. For this example I will use purely JS since TS is pain and suffering
 
 ```js
-const MusicKit = require('${package}') // or ${package}/promises if you want promise based functions instead of callback ones
+const MusicKit = require('${package}')
 ```
 
 2. Create a variable (or constant) with the imported MusicKit class
