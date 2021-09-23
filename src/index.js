@@ -54,14 +54,14 @@ class MusicKit {
 	 * 
 	 * Searches for [type]
 	 * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
-	 * @param {Object[]} type The type of thing to search. Find about possible types in https://developer.apple.com/documentation/applemusicapi/search_for_catalog_resources
+	 * @param {string} type The type of thing to search. Find about possible types in https://developer.apple.com/documentation/applemusicapi/search_for_catalog_resources
 	 * @param {string} searchquery The search query
 	 * @param {requestCallback} cb Callback
 	 * @param {number} [limit=1] The amount of responses to get (defaults to 1)
 	 * @returns {Object} Apple Music API response
 	 * @author Exerra
 	 */
-	search(country, type, searchquery, cb, limit = 1) {
+	search(storefront, type, searchquery, cb, limit = 1) {
 
 		if (!country || !type || !searchquery || !cb) {
 			throw new Error("At least one required parameter is missing. Find out about how to use the search function in https://musickit.js.org/#/catalog/functions/search")
