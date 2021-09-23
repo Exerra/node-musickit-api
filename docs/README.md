@@ -21,7 +21,7 @@ var music = new MusicKit({
 
 MusicKit.search("lv", "songs", "Ariana grande no tears left to cry", (err, data) => {
  if (err) return console.log(err)
- fs.writeFileSync('./test/test-search.json', JSON.stringify(data,0,4))
+ fs.writeFileSync('${package}-search.json', JSON.stringify(data,0,4))
 }, 5)
 ```
 To learn more about what all of this does, read the documentation!
