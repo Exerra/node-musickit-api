@@ -35,7 +35,7 @@ class MusicKit {
     }
 
     /**
-     *
+     * This updates the auth. Only used by the module
      * @private
      */
     updateAuth(paramToken, userTokenparam) {
@@ -43,6 +43,12 @@ class MusicKit {
         userToken = userTokenparam
     }
 
+    /**
+     * Get the users library
+     * @param limit How much results to get
+     * @param offset How much to offset the results
+     * @returns {Promise<Object>}
+     */
     getLibrary(limit = 1, offset = 1) {
         return new Promise((resolve, reject) => {
             axios({
@@ -57,7 +63,7 @@ class MusicKit {
     }
 
     /**
-     *
+     * Create a playlist
      * @param {Object} attributes The attributes for the playlist. See more [here](https://developer.apple.com/documentation/applemusicapi/libraryplaylistcreationrequest/attributes)
      * @param {string} attributes.name The name of the playlist you want to make
      * @param {string} attributes.description The description of the playlist you want to make
@@ -94,15 +100,22 @@ class MusicKit {
 
     /**
      * Add a song to a playlist
-     * @param {string} playlistId
-     * @param {{data: [{id: string}]}} songs
+     * @param {string} playlistId ID of the playlist to add the song to
+     * @param {{data: [{id: string}]}} songs The songs
      */
     addSongToPlaylist(playlistId, songs) {
 
+        if (!playlistId || !songs) {
+            throw new Error("At least one required parameter is missing. Find out about how to use the createPlaylist function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-song")
+            return
+        }
+
+        // Adds the song type to all of the data
         for (let i in songs.data) {
             songs.data[i].type = "songs"
         }
 
+        // Used for testing
         console.log(songs)
 
         return new Promise((resolve, reject) => {

@@ -11,7 +11,7 @@ let auth
 class MusicKit {
 	/**
 	 * 
-	 * @param {Object} credentials Apple Music credentials. Consists of a key containing MusicKit priviledges, the team ID of developer account and the ID of the key
+	 * @param {Object} credentials Apple Music credentials. Consists of a key containing MusicKit privileges, the team ID of developer account and the ID of the key
 	 * @param {string} credentials.key A valid key generated from developer console that has MusicKit permissions
 	 * @param {string} credentials.teamId ID of the team that credentials.key belongs to
 	 * @param {string} credentials.keyId ID of the credentials.key
