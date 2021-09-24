@@ -281,6 +281,34 @@ class MusicKit {
 
         
     }
+
+    /**
+     * Gets the most played songs for a storefront
+     * @param {string} storefront The storefront. How to fetch is in https://developer.apple.com/documentation/applemusicapi/fetching_resources_by_page
+     * @param {string} types Types to get. Currently only `songs` supported
+     * @param limit
+     * @returns {Promise<unknown>}
+     */
+    getCharts(storefront, types, limit = 20) {
+        return new Promise((resolve, reject) => {
+            if (!storefront || !types) {
+                throw new Error("At least one required parameter is missing. Find out about how to use the getArtist function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-an-artist")
+            }
+
+            let reqUrl = `${rootPath}/catalog/${storefront}/charts`
+            axios({
+                "method": "GET",
+                "url": reqUrl,
+                "headers": {
+                    "Authorization": auth
+                },
+                "params": {
+                    types,
+                    limit
+                }
+            }).then(res => resolve(res.data)).catch((err) => reject(err.response.data))
+        })
+    }
 }
 
 module.exports = MusicKit

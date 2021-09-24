@@ -7,10 +7,18 @@ let auth
 let userToken
 let reqUrl = `${rootPath}/me`
 
+const createBody = (status, body) => {
+    if (body === "") body = {}
+    return ({
+        status,
+        body
+    })
+}
+
 class MusicKit {
     /**
      *
-     * @param {Object} credentials Apple Music credentials. Consists of a key containing MusicKit priviledges, the team ID of developer account and the ID of the key
+     * @param {Object} credentials Apple Music credentials. Consists of a key containing MusicKit privileges, the team ID of developer account and the ID of the key
      * @param {string} credentials.key A valid key generated from developer console that has MusicKit permissions
      * @param {string} credentials.teamId ID of the team that credentials.key belongs to
      * @param {string} credentials.userToken Users token
@@ -38,9 +46,9 @@ class MusicKit {
      * This updates the auth. Only used by the module
      * @private
      */
-    updateAuth(paramToken, userTokenparam) {
+    updateAuth(paramToken, userTokenParam) {
         auth = `Bearer ${paramToken}`
-        userToken = userTokenparam
+        userToken = userTokenParam
     }
 
     /**
@@ -102,12 +110,12 @@ class MusicKit {
      * Add a song to a playlist
      * @param {string} playlistId ID of the playlist to add the song to
      * @param {{data: [{id: string}]}} songs The songs
+     * @returns {Promise<Object>}
      */
     addSongToPlaylist(playlistId, songs) {
 
         if (!playlistId || !songs) {
             throw new Error("At least one required parameter is missing. Find out about how to use the createPlaylist function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-song")
-            return
         }
 
         // Adds the song type to all of the data
@@ -116,7 +124,7 @@ class MusicKit {
         }
 
         // Used for testing
-        console.log(songs)
+        //console.log(songs)
 
         return new Promise((resolve, reject) => {
             axios({
@@ -127,7 +135,7 @@ class MusicKit {
                     "Music-User-Token": userToken
                 },
                 "data": songs
-            }).then(res => resolve(res.data)).catch((err) => reject(err.response.data))
+            }).then(res => resolve(createBody(res.status, res.data))).catch((err) => reject(createBody(err.status, err.response.data)))
         })
     }
 
