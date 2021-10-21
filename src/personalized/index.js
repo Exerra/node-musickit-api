@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
+const qs = require('qs')
 
 const rootPath = "https://api.music.apple.com/v1"
 let token
@@ -20,9 +21,9 @@ class MusicKit {
      *
      * @param {Object} credentials Apple Music credentials. Consists of a key containing MusicKit privileges, the team ID of developer account and the ID of the key
      * @param {string} credentials.key A valid key generated from developer console that has MusicKit permissions
+     * @param {string} credentials.keyId ID of the credentials.key
      * @param {string} credentials.teamId ID of the team that credentials.key belongs to
      * @param {string} credentials.userToken Users token
-     * @param {string} credentials.keyId ID of the credentials.key
      */
     constructor(credentials) {
         if (!credentials || !credentials.key || !credentials.teamId || !credentials.keyId || !credentials.userToken) {
@@ -136,6 +137,67 @@ class MusicKit {
                 },
                 "data": songs
             }).then(res => resolve(createBody(res.status, res.data))).catch((err) => reject(createBody(err.status, err.response.data)))
+        })
+    }
+
+    getRecentlyPlayed(limit, offset, type) {
+
+        if (typeof limit !== "number" || typeof offset !== "number") {
+            throw new Error("Atleast one parameter is of the incorrect type. Find out more here: REMINDMETOADDLINKHERE")
+            return
+        }
+
+        limit ||= 1
+        offset ||= 0
+
+        let params = {
+            limit: limit,
+            offset: offset
+        }
+
+        // If the types are there, then get recently played *Tracks* (https://developer.apple.com/documentation/applemusicapi/get_recently_played_tracks)
+        if (type) {
+            if (typeof type !== "string") {
+                throw new Error("The 'type' parameter is a string. Find out more here: REMINDMETOADDLINKHERE")
+                return
+            }
+
+            params = {...params, types: type}
+
+
+            // Why is this here? So I can add MULTIPLE FUCKING TYPES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            // yknow what fuck it
+            let recentlyPlayedAxios = axios.create({
+                paramsSerializer: params => qs.stringify(params, {arrayFormat: 'repeat'})
+            })
+
+            // endless console logs
+            /*console.log(params)
+            console.log(recentlyPlayedAxios)*/
+
+            return new Promise((resolve, reject) => {
+                axios({
+                    "method": "GET",
+                    "url": `${reqUrl}/recent/played/tracks`,
+                    "headers": {
+                        "Authorization": auth,
+                        "Music-User-Token": userToken
+                    },
+                    "params": params
+                }).then(res => resolve(createBody(res.status, res.data))).catch(err => reject(createBody(err.status, err.response.data)))
+            })
+        }
+
+        return new Promise((resolve, reject) => {
+            axios({
+                "method": "GET",
+                "url": `${reqUrl}/recent/played`,
+                "headers": {
+                    "Authorization": auth,
+                    "Music-User-Token": userToken
+                },
+                "params": params
+            }).then(res => resolve(createBody(res.status, res.data))).catch(err => reject(createBody(err.status, err.response.data)))
         })
     }
 
