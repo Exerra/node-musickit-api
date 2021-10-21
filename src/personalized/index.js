@@ -139,6 +139,14 @@ class MusicKit {
         })
     }
 
+    /**
+     * 
+     * @description Without any type, it just gets the recently played resources (so playlists, artists I think too). If type is provided, it fetches recently played *tracks*
+     * @param {number} limit How much results to get
+     * @param {number} offset How much to offset results
+     * @param {string} type Type of track to search
+     * @returns {Promise<Object>}
+     */
     getRecentlyPlayed(limit, offset, type) {
 
         if (typeof limit !== "number" || typeof offset !== "number") {
