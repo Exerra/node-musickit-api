@@ -109,7 +109,7 @@ class MusicKit {
     /**
      * Add a song to a playlist
      * @param {string} playlistId ID of the playlist to add the song to
-     * @param {{data: [{id: string}]}} songs The songs
+     * @param {{data: [{id: string}]}} songs Song(s) to add. Find out more [here](https://developer.apple.com/documentation/applemusicapi/libraryplaylisttracksrequest/tracks)
      * @returns {Promise<Object>}
      */
     addSongToPlaylist(playlistId, songs) {
