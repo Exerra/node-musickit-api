@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
+const { createJWT } = require("../../modules/createJWT")
 
 const rootPath = "https://api.music.apple.com/v1"
 let token
@@ -18,15 +19,7 @@ class MusicKit {
             throw new Error("No credentials supplied")
         }
 
-        token = jwt.sign({}, credentials.key, {
-            algorithm: 'ES256',
-            expiresIn: '180d',
-            issuer: credentials.teamId,
-            header: {
-                alg: 'ES256',
-                kid: credentials.keyId
-            }
-        });
+        token = createJWT(credentials)
 
         this.updateAuth(token)
     }
