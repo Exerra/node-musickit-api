@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
-const qs = require('qs')
 
 const rootPath = "https://api.music.apple.com/v1"
 let token
