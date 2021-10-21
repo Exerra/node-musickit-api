@@ -57,7 +57,7 @@ class MusicKit {
      * @param offset How much to offset the results
      * @returns {Promise<Object>}
      */
-    getLibrary(limit = 1, offset = 1) {
+    getLibrary(limit = 1, offset = 0) {
         return new Promise((resolve, reject) => {
             axios({
                 "method": "GET",
