@@ -7,3 +7,8 @@
     * Promise functions
         * [Search](catalog/promiseFunctions/search.md)
         * [Get](catalog/promiseFunctions/getFunctions.md)
+* Personalized routes
+    * [Initialization](personalized/initialization.md)
+    * Playlists
+        * [Get library](personalized/playlists/getLibrary.md)
+        * [Create playlist](personalized/playlists/createPlaylist.md)
