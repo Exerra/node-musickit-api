@@ -9,6 +9,8 @@
         * [Get](catalog/promiseFunctions/getFunctions.md)
 * Personalized routes
     * [Initialization](personalized/initialization.md)
+    * [Recently played](personalized/recentlyPlayed.md)
     * Playlists
         * [Get library](personalized/playlists/getLibrary.md)
         * [Create playlist](personalized/playlists/createPlaylist.md)
+        * [Add song to playlist](personalized/playlists/addSongToPlaylist.md)

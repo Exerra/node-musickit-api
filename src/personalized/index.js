@@ -80,7 +80,7 @@ class MusicKit {
      */
     createPlaylist(attributes, relationships) {
         if (!attributes || !relationships) {
-            throw new Error("At least one required parameter is missing. Find out about how to use the createPlaylist function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-song")
+            throw new Error("At least one required parameter is missing. Find out about how to use the createPlaylist function in https://musickit.js.org/#/personalized/playlists/createPlaylist")
         }
 
         const data = {
@@ -115,7 +115,7 @@ class MusicKit {
     addSongToPlaylist(playlistId, songs) {
 
         if (!playlistId || !songs) {
-            throw new Error("At least one required parameter is missing. Find out about how to use the createPlaylist function in https://musickit.js.org/#/catalog/functions/getFunctions?id=get-a-song")
+            throw new Error("At least one required parameter is missing. Find out about how to use the addSongToPlaylist function in https://musickit.js.org/#/personalized/playlists/addSongToPlaylist")
         }
 
         // Adds the song type to all of the data
@@ -150,7 +150,7 @@ class MusicKit {
     getRecentlyPlayed(limit, offset, type) {
 
         if (typeof limit !== "number" || typeof offset !== "number") {
-            throw new Error("Atleast one parameter is of the incorrect type. Find out more here: REMINDMETOADDLINKHERE")
+            throw new Error("Atleast one parameter is of the incorrect type. Find out more here: https://musickit.js.org/#/personalized/recentlyPlayed")
             return
         }
 
