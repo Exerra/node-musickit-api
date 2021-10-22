@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
 
-const { createJWT } = require("../../modules/createJWT")
+const { createJWT } = require("../modules/createJWT")
 
 const rootPath = "https://api.music.apple.com/v1"
 let token
@@ -57,11 +57,11 @@ class MusicKit {
 	 */
 	search(storefront, type, searchquery, cb, limit = 1) {
 
-		if (!country || !type || !searchquery || !cb) {
+		if (!storefront || !type || !searchquery || !cb) {
 			throw new Error("At least one required parameter is missing. Find out about how to use the search function in https://musickit.js.org/#/catalog/functions/search")
 		}
 
-		let reqUrl = `${rootPath}/catalog/${country}/search`
+		let reqUrl = `${rootPath}/catalog/${storefront}/search`
 
 		axios({
 			"method": "GET",
