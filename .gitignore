@@ -1,3 +1,6 @@
 node_modules
 test
 test-*.json
+
+#macOS .DS_Store
+.DS_Store
