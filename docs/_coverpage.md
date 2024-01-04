@@ -4,9 +4,7 @@
 
 > Wrapper for the Apple Music API
 
-- Simple and lightweight
-- No bullshit
-- Do you promise to use promises?
+- Simple and lightweight wrapper
 
 [GitHub](https://github.com/exerra/node-musickit-api)
 [Get Started](#node-musickit-api)
