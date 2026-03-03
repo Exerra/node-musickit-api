@@ -1,18 +1,18 @@
-# Get functions
-This section focuses on how to get songs, albums, music videos and artists
+# Get Functions
 
-All of the functions in this category take in 3 parameters, of which **all** are necessary.
+This section covers retrieving songs, albums, music videos, and artists.
 
-Also all of the functions are *extremely* similar, but I will still make them into seperate sections because why not
+All functions in this category require 2 parameters.
+
+The functions follow the same pattern and are documented separately below.
 
 ## Requirements
 
-As with any function, you are required to initialize ${package}. To find out how to do so, click [here](/initialization.md)
+You must first initialize ${package}. See the [Initialization](/initialization.md) guide.
 
 ## Get by ID
 
-### Get a song
-To get a song by ID, you can do
+### Get a Song
 
 ```js
 MusicKit.getSong("lv", "1399202959")
@@ -22,13 +22,12 @@ MusicKit.getSong("lv", "1399202959")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 1399202959        | This is the ID of the song                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 1399202959        | The ID of the song                                                                                                                                                                     |
 
-### Get an album
-To get an album by ID, you can do
+### Get an Album
 
 ```js
 MusicKit.getAlbum("lv", "1399202539")
@@ -38,13 +37,12 @@ MusicKit.getAlbum("lv", "1399202539")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 1399202539        | This is the ID of the album                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 1399202539        | The ID of the album                                                                                                                                                                     |
 
-### Get a music video
-To get a music video by ID, you can do
+### Get a Music Video
 
 ```js
 MusicKit.getMusicVideo("lv", "1374328492")
@@ -54,13 +52,12 @@ MusicKit.getMusicVideo("lv", "1374328492")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 1374328492        | This is the ID of the music video                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 1374328492        | The ID of the music video                                                                                                                                                                     |
 
-### Get an artist
-To get an artist by ID, you can do
+### Get an Artist
 
 ```js
 MusicKit.getArtist("lv", "412778295")
@@ -70,15 +67,14 @@ MusicKit.getArtist("lv", "412778295")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 412778295        | This is the ID of the music video                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 412778295         | The ID of the artist                                                                                                                                                                     |
 
-## Get by industry IDs
+## Get by Industry IDs
 
-### Get a song by ISRC
-To get a song by ISRC, you can do
+### Get a Song by ISRC
 
 ```js
 MusicKit.getSongByISRC("lv", "USUM71805289")
@@ -88,13 +84,12 @@ MusicKit.getSongByISRC("lv", "USUM71805289")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ISRC         | USUM71805289        | This is the ISRC of the song                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ISRC         | USUM71805289        | The ISRC of the song                                                                                                                                                                     |
 
-### Get a music video by ISRC
-To get a music video by ISRC, you can do
+### Get a Music Video by ISRC
 
 ```js
 MusicKit.getMusicVideoByISRC("lv", "USUM71805289")
@@ -104,13 +99,12 @@ MusicKit.getMusicVideoByISRC("lv", "USUM71805289")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ISRC         | USUM71805289        | This is the ISRC of the music video                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ISRC         | USUM71805289        | The ISRC of the music video                                                                                                                                                                     |
 
-### Get an album by UPC
-To get an album by UPC, you can do
+### Get an Album by UPC
 
 ```js
 MusicKit.getAlbumByUPC("lv", "00602567807995")
@@ -120,7 +114,7 @@ MusicKit.getAlbumByUPC("lv", "00602567807995")
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| UPC         | 00602567807995        | This is the UPC of the album                                                                                                                                                                     |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| UPC         | 00602567807995        | The UPC of the album                                                                                                                                                                     |

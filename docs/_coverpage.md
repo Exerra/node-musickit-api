@@ -5,6 +5,7 @@
 > Wrapper for the Apple Music API
 
 - Simple and lightweight wrapper
+- ⚠️ **This project is deprecated and no longer maintained.**
 
 [GitHub](https://github.com/exerra/node-musickit-api)
 [Get Started](#node-musickit-api)
