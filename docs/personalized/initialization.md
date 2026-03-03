@@ -61,6 +61,7 @@ const MusicKitConst = new MusicKit({
 MUSICKIT_KEY="-----BEGIN PRIVATE KEY-----\nSTRING\nSTRING\nSTRING\n-----END PRIVATE KEY-----"
 MUSICKIT_TEAMID="your_team_id"
 MUSICKIT_KEYID="your_key_id"
+MUSICKIT_USERTOKEN="the_user_token"
 ```
 
 > **Note:** The `MUSICKIT_KEY` value is stored as a single line with literal `\n` characters. The `.replace(/\\n/g, '\n')` call in the JavaScript file converts these back to actual newlines, since `.env` files may not correctly handle multi-line values.

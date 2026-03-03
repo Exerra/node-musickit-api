@@ -114,7 +114,7 @@ MusicKit.getMusicVideoByISRC("lv", "USUM71805289", (err, data) => {
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
 | ISRC         | USUM71805289        | The ISRC of the music video                                                                                                                                                                     |
-| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_music_video) |
 
 ### Get an Album by UPC
 

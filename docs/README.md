@@ -36,7 +36,7 @@ var music = new MusicKit({
   keyId: ""   // Your key's ID
 })
 
-MusicKit.search("lv", "songs", "Ariana grande no tears left to cry", (err, data) => {
+music.search("lv", "songs", "Ariana grande no tears left to cry", (err, data) => {
  if (err) return console.log(err)
  fs.writeFileSync('${package}-search.json', JSON.stringify(data, 0, 4))
 }, 5)
