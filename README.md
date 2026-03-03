@@ -1,9 +1,19 @@
-# node-musickit-api
-A wrapper for the Apple Music API written in NodeJS
+# 🎵 node-musickit-api
 
-⚠️ This package is no longer being maintained as I no longer have access to a paid Apple Dev account ⚠️
+> A Node.js wrapper for the Apple Music API.
 
-## Installation
+> [!WARNING]
+> **PROJECT ARCHIVED (March 3, 2026)**
+> 
+> This repository has been officially archived. The project has not been actively maintained, a new version has not been published in nearly five years, and there has been no recent external activity. Furthermore, I no longer use Apple Music or maintain an active Apple Developer account, making it impossible to test or implement new API changes.
+>
+> **Interested in reviving this project?**
+> If you are a developer interested in taking over maintenance, forking, or reviving this project, please reach out to me ([@Exerra on GitHub](https://github.com/Exerra)) :)
+
+## 📦 Installation
+
+You can install the package using your preferred package manager:
+
 ```bash
 npm install node-musickit-api
 # or
@@ -12,16 +22,17 @@ yarn add node-musickit-api
 bun add node-musickit-api
 ```
 
-## Documentation
-The documentation is viewable on [musickit.js.org](https://musickit.js.org/#/).
+## 📖 Documentation
 
-## Issues
+Documentation for this package is available at [musickit.js.org](https://musickit.js.org/#/).
 
-As I am now for the foreseeable future cancelling any work on this package (because of no paid Apple Dev account) I will leave a list of issues with this package.
+## 🐛 Known Issues & Technical Debt
 
-- [ ] The code quality is overall quite bad
-- [ ] It isn't written in TypeScript nor have TS types
-- [ ] The code should be built with promises in mind, not have them lazily patched on with a subpath (`node-musickit-api/promises`)
-- [ ] Personalised routes should not be lazily patched on with a subpath (`node-musickit-api/personalized`)
-- [ ] Personalized routes require a hacky workaround by authorizing with MusicKit.js (the official web lib by Apple), then grabbing the token and saving it as a file. Ideally the package should be able to handle auth.
-- [ ] There isn't a way to check if you are logged in without performing a query first (see: https://github.com/Exerra/node-musickit-api/issues/10)
+As active development has ceased, I am documenting the project's current technical debt. If anyone chooses to fork or revive the library, these are the primary architectural issues that require attention:
+
+*   **Code Architecture:** The core codebase requires significant refactoring to align with modern JavaScript standards.
+*   **TypeScript Support:** The project lacks TypeScript integration and native type definitions.
+*   **Promise API:** Native Promise support should be integrated directly into the core library, rather than being retrofitted via a secondary subpath (`node-musickit-api/promises`).
+*   **Route Structuring:** Personalized routing logic is currently isolated within a subpath (`node-musickit-api/personalized`) instead of being cohesively integrated into the main client.
+*   **Authentication Flow:** Accessing personalized routes currently relies on an impractical workaround—requiring users to authorize via Apple's official MusicKit.js web library, extract the session token manually, and save it as a local file. A modernized implementation should handle the authentication flow natively.
+*   **Session Validation:** There is currently no built-in method to verify an active authentication state without executing a preliminary API query (see [Issue #10](https://github.com/Exerra/node-musickit-api/issues/10)).
