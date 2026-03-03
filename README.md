@@ -5,7 +5,7 @@
 > [!WARNING]
 > **PROJECT ARCHIVED (March 3, 2026)**
 > 
-> This repository has been officially archived. The project has not been actively maintained, a new version has not been published in nearly five years, and there has been no recent external activity. Furthermore, I no longer use Apple Music or maintain an active Apple Developer account, making it impossible to test or implement new API changes.
+> This repository has been officially archived. The project has not been actively maintained, a new version has not been published in nearly five years, and there has been no recent external activity. Furthermore, I no longer use Apple Music or maintain an active Apple Developer account, making it impossible to test or implement new API changes or even validate if the existing code still works.
 >
 > **Interested in reviving this project?**
 > If you are a developer interested in taking over maintenance, forking, or reviving this project, please reach out to me ([@Exerra on GitHub](https://github.com/Exerra)) :)
