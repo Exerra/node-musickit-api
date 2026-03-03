@@ -1,20 +1,22 @@
-# `${package}/personalized` initialization
-To initialize `${package}/personalized` you need to use a constructor. learn more about constructors [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor)
+# `${package}/personalized` Initialization
+
+To initialize `${package}/personalized`, create a new instance using the constructor. For more information on constructors, see the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor).
 
 ## Requirements
-You will **need** to be enrolled in the Apple developer program, then you will need to create a key with MusicKit priviledges.
 
-Afterwards you will need to get a user token (usually done with MusicKit.js). Apple does not provide an easy method to do that without using their proprietary software, but maybe through reverse engineering it I will crack it (no promises tho (aH hA get ittt... bad joke. also it will have promises, why am I even saying thi- yknow what nvm lets move on))
+You must be enrolled in the [Apple Developer Program](https://developer.apple.com/programs/) and have created a key with MusicKit privileges.
 
-## Actual steps
+You will also need a user token, which is typically obtained through [MusicKit.js](https://developer.apple.com/documentation/musickitjs). Apple does not provide a straightforward way to obtain this token without using their client-side library.
 
-1. Import the package. For this example I will use purely JS since TS is pain and suffering
+## Steps
+
+1. Import the package.
 
 ```js
 const MusicKit = require('${package}/personalized')
 ```
 
-2. Create a variable (or constant) with the imported MusicKit class
+2. Create a new instance of the MusicKit class.
 
 ```js
 const MusicKit = require('${package}/personalized')
@@ -22,56 +24,46 @@ const MusicKit = require('${package}/personalized')
 const MusicKitConst = new MusicKit()
 ```
 
-3. Populate the constructor with the necessary fields
+3. Provide the required configuration to the constructor.
 
 ```js
 const MusicKit = require('${package}/personalized')
 
 const MusicKitConst = new MusicKit({
-	key: "Your key (must be converted to string",
-	teamId: "Your Apple developer accounts team ID",
-	keyId: "The ID of the key you have made",
-	userToken: "The users token"
+	key: "Your key (must be converted to string)",
+	teamId: "Your Apple Developer account team ID",
+	keyId: "The ID of the key you created",
+	userToken: "The user's token"
 })
 ```
 
-4. ???
-5. Profit
+The above example stores the key in plain text, which may be acceptable for personal projects. For production use, it is recommended to use environment variables instead.
 
-Now you have done all the necessary steps to initialize `${package}/personalized`, but wait!
+### Using Environment Variables with dotenv
 
-In the example I showed, the key was stored in plain text (or if you use fs, plain .p8 file). Now that may be simpler to implement for personal projects, its better and more safer to use environment variables. So,
+[dotenv](https://npmjs.org/package/dotenv) loads variables from a `.env` file into `process.env`.
 
-### How to use MusicKit with dotenv
-
-[Dotenv](https://npmjs.org/package/dotenv) is a wonderful tool that loads your projects `.env` file into environment variables (since Node doesn't).
-
-To use it with `${package}/personalized`, do all the steps above BUT instead of adding the strings in the constructor, do this
-
-index.js
+**index.js**
 ```js
 const MusicKit = require('${package}/personalized')
 require('dotenv').config()
 
 const MusicKitConst = new MusicKit({
-	key: process.env.MUSICKIT_KEY.replace(/\\n/g, '\n').toString(), // In my testing, I had to do this. Explained later
+	key: process.env.MUSICKIT_KEY.replace(/\\n/g, '\n').toString(),
 	teamId: process.env.MUSICKIT_TEAMID,
 	keyId: process.env.MUSICKIT_KEYID,
 	userToken: process.env.MUSICKIT_USERTOKEN
 })
 ```
 
-`.env`
-```your mum
+**.env**
+```env
 MUSICKIT_KEY="-----BEGIN PRIVATE KEY-----\nSTRING\nSTRING\nSTRING\n-----END PRIVATE KEY-----"
-MUSICKIT_TEAMID="blahblahdeeblah"
-MUSICKIT_KEYID="blahblahdeeblah"
+MUSICKIT_TEAMID="your_team_id"
+MUSICKIT_KEYID="your_key_id"
+MUSICKIT_USERTOKEN="the_user_token"
 ```
 
-Now, you may be wondering: "Why make `MUSICKIT_KEY` one line that gets seperated with `\n`, but still replace `\n` with `\n` in the JS file?"
+> **Note:** The `MUSICKIT_KEY` value is stored as a single line with literal `\n` characters. The `.replace(/\\n/g, '\n')` call in the JavaScript file converts these back to actual newlines, since `.env` files may not correctly handle multi-line values.
 
-Well dear reader, it is because in my testing the `\n` in `.env` doesn't work. Maybe it is only an issue for me, but I am showing you how it worked for me.
-
-Also, add `.env` to your `.gitignore` (otherwise it just defeats the whole purpose of `.env`)
-
-Anyway, now we are done with the *safe* method of initializing MusicKit, hooray!
+Make sure to add `.env` to your `.gitignore` to avoid committing sensitive credentials.

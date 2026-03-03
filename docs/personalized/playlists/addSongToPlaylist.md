@@ -1,12 +1,13 @@
-# Create playlist
-This function lets you add a song to a users playlist.
+# Add Song to Playlist
+
+Adds one or more songs to a user's playlist.
 
 ## Requirements
 
-As with any function, you are required to initialize `${package}/personalized`. To find out how to do so, click [here](personalized/initialization.md)
+You must first initialize `${package}/personalized`. See the [Initialization](personalized/initialization.md) guide.
 
 ## Usage
-To use it, you do
+
 ```js
 MusicKit.addSongToPlaylist("3456743567", {data: [{id: "1450330685"}, {id: "1520233767"}]})
   .then(data => { console.log(data) })
@@ -14,7 +15,7 @@ MusicKit.addSongToPlaylist("3456743567", {data: [{id: "1450330685"}, {id: "15202
 ```
 
 ## Explanation
-| Parameter | Example | What it does | Optional? |
+| Parameter | Example | Description | Optional? |
 |---|---|---|---|
 | playlistID | 3456743567 | ID of the playlist to add the song to | false |
-| songs | {data :  [{id :   " 1450330685 " } ,  {id :   " 1520233767 " }]} | Song(s) to add. Find out more [here](https://developer.apple.com/documentation/applemusicapi/libraryplaylisttracksrequest/tracks) | false |
+| songs | {data: [{id: "1450330685"}, {id: "1520233767"}]} | Song(s) to add. See the [API reference](https://developer.apple.com/documentation/applemusicapi/libraryplaylisttracksrequest/tracks) for details | false |

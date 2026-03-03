@@ -1,18 +1,18 @@
-# Get functions
-This section focuses on how to get songs, albums, music videos and artists
+# Get Functions
 
-All of the functions in this category take in 3 parameters, of which **all** are necessary.
+This section covers retrieving songs, albums, music videos, and artists.
 
-Also all of the functions are *extremely* similar, but I will still make them into seperate sections because why not 
+All functions in this category require 3 parameters.
+
+The functions follow the same pattern and are documented separately below.
 
 ## Requirements
 
-As with any function, you are required to initialize ${package}. To find out how to do so, click [here](/initialization.md)
+You must first initialize ${package}. See the [Initialization](/initialization.md) guide.
 
 ## Get by ID
 
-### Get a song
-To get a song by ID, you can do
+### Get a Song
 
 ```js
 MusicKit.getSong("lv", "1399202959", (err, data) => {
@@ -23,14 +23,13 @@ MusicKit.getSong("lv", "1399202959", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 1399202959        | This is the ID of the song                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_song#3002792) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 1399202959        | The ID of the song                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_song#3002792) |
 
-### Get an album
-To get an album by ID, you can do
+### Get an Album
 
 ```js
 MusicKit.getAlbum("lv", "1399202539", (err, data) => {
@@ -41,14 +40,13 @@ MusicKit.getAlbum("lv", "1399202539", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 1399202539        | This is the ID of the album                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 1399202539        | The ID of the album                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
 
-### Get a music video
-To get a music video by ID, you can do
+### Get a Music Video
 
 ```js
 MusicKit.getMusicVideo("lv", "1374328492", (err, data) => {
@@ -59,14 +57,13 @@ MusicKit.getMusicVideo("lv", "1374328492", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 1374328492        | This is the ID of the music video                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_music_video#3002773) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 1374328492        | The ID of the music video                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_music_video#3002773) |
 
-### Get an artist
-To get an artist by ID, you can do
+### Get an Artist
 
 ```js
 MusicKit.getArtist("lv", "412778295", (err, data) => {
@@ -77,16 +74,15 @@ MusicKit.getArtist("lv", "412778295", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ID         | 412778295        | This is the ID of the music video                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_artist#3002797) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ID         | 412778295         | The ID of the artist                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_artist#3002797) |
 
-## Get by industry IDs
+## Get by Industry IDs
 
-### Get a song by ISRC
-To get a song by ISRC, you can do
+### Get a Song by ISRC
 
 ```js
 MusicKit.getSongByISRC("lv", "USUM71805289", (err, data) => {
@@ -97,14 +93,13 @@ MusicKit.getSongByISRC("lv", "USUM71805289", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ISRC         | USUM71805289        | This is the ISRC of the song                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_song#3002792) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ISRC         | USUM71805289        | The ISRC of the song                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_song#3002792) |
 
-### Get a music video by ISRC
-To get a music video by ISRC, you can do
+### Get a Music Video by ISRC
 
 ```js
 MusicKit.getMusicVideoByISRC("lv", "USUM71805289", (err, data) => {
@@ -115,14 +110,13 @@ MusicKit.getMusicVideoByISRC("lv", "USUM71805289", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| ISRC         | USUM71805289        | This is the ISRC of the music video                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| ISRC         | USUM71805289        | The ISRC of the music video                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
 
-### Get an album by UPC
-To get an album by UPC, you can do
+### Get an Album by UPC
 
 ```js
 MusicKit.getAlbumByUPC("lv", "00602567807995", (err, data) => {
@@ -133,8 +127,8 @@ MusicKit.getAlbumByUPC("lv", "00602567807995", (err, data) => {
 
 #### Explanation
 
-| Parameter  | Example           | What it does                                                                                                                                                                                   |
+| Parameter  | Example           | Description                                                                                                                                                                                   |
 |------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Storefront | lv                | This is the storefront for catalog you want to search in                                                                                                                                       |
-| UPC         | 00602567807995        | This is the UPC of the album                                                                                                                                                                     |
-| Callback   | (err, data) => {} | This is the callback. First parameter is the error, second is the actual response.<br>The response can be found [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |
+| Storefront | lv                | The storefront for the catalog you want to search in                                                                                                                                       |
+| UPC         | 00602567807995        | The UPC of the album                                                                                                                                                                     |
+| Callback   | (err, data) => {} | Callback function. First parameter is the error, second is the response.<br>See response format [here](https://developer.apple.com/documentation/applemusicapi/get_a_catalog_album#3002705) |

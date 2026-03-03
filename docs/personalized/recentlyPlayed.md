@@ -1,13 +1,14 @@
-# Recently played
+# Recently Played
 
-These functions let you access the users recently played resources and recently played tracks.
+These functions retrieve the user's recently played resources and recently played tracks.
 
 ## Requirements
 
-As with any function, you are required to initialize `${package}/personalized`. To find out how to do so, click [here](personalized/initialization.md)
+You must first initialize `${package}/personalized`. See the [Initialization](personalized/initialization.md) guide.
 
-## Get recently played resources
-You can get albums, playlists and I think artists here
+## Get Recently Played Resources
+
+Returns recently played albums, playlists, and artists.
 
 ### Usage
 ```js
@@ -17,13 +18,14 @@ MusicKit.getRecentlyPlayed(1, 0)
 ```
 
 ### Explanation
-| Parameter | Example | What it does | Optional? |
+| Parameter | Example | Description | Optional? |
 |---|---|---|---|
-| limit | 1 | How much data to fetch (Max 25) | true |
-| offset | 0 | How much to offset the data | true |
+| limit | 1 | Maximum number of results to fetch (max 25) | true |
+| offset | 0 | Number of results to skip | true |
 
-## Get recently played tracks
-You can get library music videos, library songs, music videos and songs
+## Get Recently Played Tracks
+
+Returns library music videos, library songs, music videos, and songs.
 
 ### Usage
 ```js
@@ -33,8 +35,8 @@ MusicKit.getRecentlyPlayed(1, 0, "songs")
 ```
 
 ### Explanation
-| Parameter | Example | What it does | Optional? |
+| Parameter | Example | Description | Optional? |
 |---|---|---|---|
-| limit | 1 | How much data to fetch (Max 25) | false |
-| offset | 0 | How much to offset the data | false |
-| type | songs | What type of track to fetch. Possible types: `library-music-videos, library-songs, music-videos, songs` | false |
+| limit | 1 | Maximum number of results to fetch (max 25) | false |
+| offset | 0 | Number of results to skip | false |
+| type | songs | Type of track to fetch. Possible types: `library-music-videos, library-songs, music-videos, songs` | false |
