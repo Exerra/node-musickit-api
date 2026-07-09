@@ -16,17 +16,17 @@ interface SearchParsedTypeMap {
 
 type KnownSearchType = keyof SearchRawTypeMap & SearchType;
 
-type RawBlock = {
+type MappedRawResult = {
   [K in SearchType]: K extends KnownSearchType
     ? { href: string; next?: string; data: SearchRawTypeMap[K][] }
     : { href: string; next?: string; data: any[] };
-}[SearchType];
+};
 
-type ParsedBlock = {
+type MappedParsedResult = {
   [K in SearchType]: K extends KnownSearchType
     ? SearchParsedTypeMap[K][]
     : any[];
-}[SearchType];
+};
 
 export type SearchParams = {
     term: string;
@@ -38,7 +38,7 @@ export type SearchParams = {
 }
 
 export interface SearchResultRaw {
-    results: Partial<Record<SearchType, RawBlock>>;
+    results: Partial<MappedRawResult>;
     meta: {
         results: {
             order: SearchType[];
@@ -49,5 +49,5 @@ export interface SearchResultRaw {
 
 export interface SearchResult {
     nextOffset: number | null;
-    results: Partial<Record<SearchType, ParsedBlock>>;
+    results: Partial<MappedParsedResult>;
 }
