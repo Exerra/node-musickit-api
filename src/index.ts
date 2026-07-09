@@ -1,7 +1,7 @@
-import type { Relationships } from "./types/relationships";
 import type { SearchParams, SearchResult, SearchResultRaw, SearchType } from "./types/search";
-import type { SongRaw } from "./types/song";
 import { createJWT } from "./util/jwt";
+import { SongsResource } from "./resources/songs";
+import { AlbumsResource } from "./resources/albums";
 
 export type MusicKitProps = {
     key: {
@@ -17,6 +17,8 @@ export type MusicKitResultWrapper<T> = {
     error: string | null;
 }
 
+export type FetchAPI = <T>(path: string) => Promise<MusicKitResultWrapper<T>>
+
 export class MusicKit {
     // Public in case users want to proxy the URL or use a local server for testing
     public baseUrl = "https://api.music.apple.com/v1";
@@ -30,6 +32,33 @@ export class MusicKit {
         }
 
         this.key = props.key;
+    }
+
+    private async fetchAPI<T>(path: string): Promise<MusicKitResultWrapper<T>> {
+        const req = await fetch(`${this.baseUrl}${path}`, {
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            }
+        })
+
+        const body = await req.json() as { data: T }
+
+        return {
+            status: req.status,
+            data: body.data,
+            error: req.status !== 200 ? await req.text() : null
+        }
+    }
+
+    private _songs?: SongsResource
+    private _albums?: AlbumsResource
+
+    get songs() {
+        return this._songs ??= new SongsResource(<T>(path: string) => this.fetchAPI<T>(path))
+    }
+
+    get albums() {
+        return this._albums ??= new AlbumsResource(<T>(path: string) => this.fetchAPI<T>(path))
     }
 
     async auth() {
@@ -110,20 +139,4 @@ export class MusicKit {
         }
     }
 
-    // No parsing needed I think (?)
-    async getSong(storefront: string, id: string): Promise<MusicKitResultWrapper<SongRaw & Relationships>> {
-        const req = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/songs/${id}`, {
-            headers: {
-                "Authorization": `Bearer ${this.token}`
-            }
-        })
-
-        const body = await req.json() as {data: SongRaw & Relationships}
-
-        return {
-            status: req.status,
-            data: body.data,
-            error: req.status !== 200 ? await req.text() : null
-        }
-    }
 }
