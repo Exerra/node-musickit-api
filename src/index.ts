@@ -74,7 +74,7 @@ export class MusicKit {
 
     // Resolves issue #10
     async testAuth() {
-        const req = await fetch("https://api.music.apple.com/v1/test", {
+        const req = await fetch(`${this.baseUrl}/test`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
             }
@@ -89,7 +89,7 @@ export class MusicKit {
         const searchparams = new URLSearchParams(params as any)
 
         // Refactor to fetchAPI? Not sure if it would be worth it, access to the raw data is needed and it would be another step. Only really makes the raw response code nicer.
-        const req = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?${searchparams.toString()}`, {
+        const req = await fetch(`${this.baseUrl}/catalog/${storefront}/search?${searchparams.toString()}`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
             }
