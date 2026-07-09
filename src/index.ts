@@ -123,10 +123,28 @@ export class MusicKit {
             const items: any[] = []
         
             for (const item of result.data) {
-                items.push({
+                let tempItem = {
                     id: item.id,
                     ...item.attributes
-                })
+                }
+
+                if (item.relationships) {
+
+                    for (const relKey of Object.keys(item.relationships)) {
+                        const rel = item.relationships[relKey as keyof typeof item.relationships]
+
+                        if (rel && rel.data) {
+                            tempItem = {
+                                ...tempItem,
+                                relationships: {
+                                    ...(tempItem.relationships ?? {}),
+                                    [relKey]: rel.data
+                                }
+                            }
+                        }
+                    }
+                }
+                items.push(tempItem)
             }
 
             (temp.results as any)[key] = items

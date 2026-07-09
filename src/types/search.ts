@@ -1,4 +1,5 @@
 import type { AlbumRaw, Album } from "./album";
+import type { Artist, ArtistRaw } from "./artist";
 import type { SongRaw, Song } from "./song";
 
 // https://developer.apple.com/documentation/applemusicapi/search-for-catalog-resources-(by-type)#:~:text=objects%20to%20fetch.-,types,-%5Bstring%5D
@@ -7,11 +8,13 @@ export type SearchType = "activities" | "albums" | "apple-curators" | "artists" 
 interface SearchRawTypeMap {
   songs: SongRaw;
   albums: AlbumRaw;
+  artists: ArtistRaw;
 }
 
 interface SearchParsedTypeMap {
   songs: Song;
   albums: Album;
+  artists: Artist;
 }
 
 type KnownSearchType = keyof SearchRawTypeMap & SearchType;

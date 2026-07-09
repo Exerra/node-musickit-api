@@ -1,0 +1,1 @@
+This is an npm package named node-musickit-api. It is a wrapper for the Apple Music API.

@@ -6,4 +6,4 @@
 - [x] GET album by UPC
 - [ ] GET MV by id
 - [ ] GET MV by ISRC
-- [ ] GET artist by id
+- [x] GET artist by id
