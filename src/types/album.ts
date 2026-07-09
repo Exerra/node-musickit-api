@@ -7,6 +7,10 @@ export interface AlbumRaw {
     attributes: Attributes;
 }
 
+export type Album = {
+    id:         string;
+} & Attributes
+
 export interface Attributes {
     artistName:          string;
     artwork:             Artwork;

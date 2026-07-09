@@ -7,6 +7,10 @@ export interface SongRaw {
     attributes: Attributes;
 }
 
+export type Song = {
+    id:         string;
+} & Attributes
+
 export interface Attributes {
     albumName:            string;
     artistName:           string;
