@@ -1,4 +1,6 @@
+import type { Relationships } from "./types/relationships";
 import type { SearchParams, SearchResult, SearchResultRaw, SearchType } from "./types/search";
+import type { SongRaw } from "./types/song";
 import { createJWT } from "./util/jwt";
 
 export type MusicKitProps = {
@@ -104,6 +106,23 @@ export class MusicKit {
         return {
             status: req.status,
             data: temp,
+            error: req.status !== 200 ? await req.text() : null
+        }
+    }
+
+    // No parsing needed I think (?)
+    async getSong(storefront: string, id: string): Promise<MusicKitResultWrapper<SongRaw & Relationships>> {
+        const req = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/songs/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            }
+        })
+
+        const body = await req.json() as {data: SongRaw & Relationships}
+
+        return {
+            status: req.status,
+            data: body.data,
             error: req.status !== 200 ? await req.text() : null
         }
     }
