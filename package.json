@@ -1,5 +1,7 @@
 {
   "name": "node-musickit-api",
+  "version": "3.0.0",
+  "description": "A wrapper for the Apple Music API written in NodeJS",
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
@@ -7,5 +9,23 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Exerra/node-musickit-api.git"
+  },
+  "keywords": [
+    "node",
+    "musickit",
+    "node-musickit",
+    "apple",
+    "apple music",
+    "music",
+    "api"
+  ],
+  "author": "Savičs <exerra@exerra.xyz> (https://exerra.xyz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Exerra/node-musickit-api/issues"
   }
 }
