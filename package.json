@@ -27,5 +27,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Exerra/node-musickit-api/issues"
+  },
+  "dependencies": {
+    "jose": "^6.2.3"
   }
 }
