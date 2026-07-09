@@ -1,4 +1,5 @@
 import type { PlayParams } from "./play";
+import type { GenericRelationship } from "./relationships";
 
 export interface SongRaw {
     id:         string;
@@ -10,6 +11,8 @@ export interface SongRaw {
 export type Song = {
     id:         string;
 } & Attributes
+
+export type SongRelationships = Partial<Record<"albums" | "artists", GenericRelationship>>
 
 export interface Attributes {
     albumName:            string;

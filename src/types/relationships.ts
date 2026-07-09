@@ -1,11 +1,15 @@
 import type { SearchType } from "./search";
+import type { SongRaw } from "./song";
 
-export interface Relationship {
+export type GenericRelationship = {
     href: string;
     data: Datum[];
 }
 
-export type Relationships = Partial<Record<SearchType, Relationship>>
+export type TrackRelationship = {
+    href: string;
+    data: SongRaw[];
+}
 
 export interface Datum {
     id:   string;
