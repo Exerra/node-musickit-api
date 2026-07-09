@@ -88,6 +88,7 @@ export class MusicKit {
     async search(storefront: string, params: SearchParams, raw = false): Promise<MusicKitResultWrapper<SearchResultRaw | SearchResult>> {
         const searchparams = new URLSearchParams(params as any)
 
+        // Refactor to fetchAPI? Not sure if it would be worth it, access to the raw data is needed and it would be another step. Only really makes the raw response code nicer.
         const req = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?${searchparams.toString()}`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
@@ -121,6 +122,7 @@ export class MusicKit {
             }
         }
 
+        // Removes unnecessary fields like href and next (which is already handled by nextOffset)
         for (const key of Object.keys(body.results) as SearchType[]) {
             const result = body.results[key]
 
@@ -134,8 +136,8 @@ export class MusicKit {
                     ...item.attributes
                 }
 
+                // Applies the same flattening logic to relationships as well, if they exist. The relationship object *also* contains the very same next and href fields.
                 if (item.relationships) {
-
                     for (const relKey of Object.keys(item.relationships)) {
                         const rel = item.relationships[relKey as keyof typeof item.relationships]
 
