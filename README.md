@@ -1,4 +1,8 @@
-# 🎵 node-musickit-api
+# 🎵 node-musickit-api REWRITE
+
+This is a rewrite branch of node-musickit-api. This branch will focus on rewriting the code to have TS support and improve the architecture. Other issues may also be addressed, however the main goal is the improvement of the codebase.
+
+---
 
 > A Node.js wrapper for the Apple Music API.
 
