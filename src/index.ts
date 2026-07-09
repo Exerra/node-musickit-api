@@ -2,6 +2,7 @@ import type { SearchParams, SearchResult, SearchResultRaw, SearchType } from "./
 import { createJWT } from "./util/jwt";
 import { SongsResource } from "./resources/songs";
 import { AlbumsResource } from "./resources/albums";
+import { ArtistsResource } from "./resources/artists";
 
 export type MusicKitProps = {
     key: {
@@ -52,6 +53,7 @@ export class MusicKit {
 
     private _songs?: SongsResource
     private _albums?: AlbumsResource
+    private _artists?: ArtistsResource
 
     get songs() {
         return this._songs ??= new SongsResource(<T>(path: string) => this.fetchAPI<T>(path))
@@ -59,6 +61,10 @@ export class MusicKit {
 
     get albums() {
         return this._albums ??= new AlbumsResource(<T>(path: string) => this.fetchAPI<T>(path))
+    }
+
+    get artists() {
+        return this._artists ??= new ArtistsResource(<T>(path: string) => this.fetchAPI<T>(path))
     }
 
     async auth() {
