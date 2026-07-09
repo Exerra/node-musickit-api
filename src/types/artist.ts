@@ -5,7 +5,7 @@ export interface ArtistRaw {
     type:       string;
     href:       string;
     attributes: Attributes;
-    relationships: ArtistRelationships;
+    relationships: ArtistRelationships & { albums: { next: string } };
 }
 
 export type Artist = {
