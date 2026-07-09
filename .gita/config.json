@@ -1,0 +1,14 @@
+{
+  "ai": {
+    "enabled": true,
+    "mode": "always",
+    "temperature": 1,
+    "skipProviderCheck": false
+  },
+  "knowledgeBase": {
+    "enabled": true,
+    "paths": [".gita/knowledge"],
+    "maxChars": 6000,
+    "includeExtensions": [".md", ".txt", ".markdown", ".mdx", ".json", ".yml", ".yaml"]
+  }
+}
