@@ -26,3 +26,8 @@ export interface SearchResultRaw {
         }
     }
 }
+
+export interface SearchResult {
+    nextOffset: number | null;
+    results: any; // TODO make this type dynamically list what keys will be returned based on the params
+}
