@@ -98,7 +98,7 @@ export class MusicKit {
                 })
             }
 
-            temp.results[key] = items
+            (temp.results as any)[key] = items
         }
 
         return {
