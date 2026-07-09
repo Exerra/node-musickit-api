@@ -1,4 +1,4 @@
-import type { SearchParams, SearchResult, SearchResultRaw } from "./types/search";
+import type { SearchParams, SearchResult, SearchResultRaw, SearchType } from "./types/search";
 import { createJWT } from "./util/jwt";
 
 export type MusicKitProps = {
@@ -46,9 +46,9 @@ export class MusicKit {
         return req.status
     }
 
-    // TODO make the SearchResult and SearchResultRaw type dynamically list what keys will be returned based on the params
-    // TODO make the return value vary based on the raw param. If raw is true, return SearchResultRaw, else return SearchResult
-    async search(storefront: string, params: SearchParams, raw = false): Promise<MusicKitResultWrapper<SearchResultRaw>> {
+    async search(storefront: string, params: SearchParams, raw: true): Promise<MusicKitResultWrapper<SearchResultRaw>>;
+    async search(storefront: string, params: SearchParams, raw?: false): Promise<MusicKitResultWrapper<SearchResult>>;
+    async search(storefront: string, params: SearchParams, raw = false): Promise<MusicKitResultWrapper<SearchResultRaw | SearchResult>> {
         const searchparams = new URLSearchParams(params as any)
 
         const req = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?${searchparams.toString()}`, {
@@ -67,12 +67,13 @@ export class MusicKit {
             }
         }
 
-        let temp = {
-            nextOffset: null as number | null,
+        const temp: SearchResult = {
+            nextOffset: null,
             results: {}
-        } as SearchResult
+        }
 
-        const nextOffsetHref = body.results[Object.keys(body.results)[0] as keyof typeof body.results]?.next
+        const firstKey = Object.keys(body.results)[0] as SearchType | undefined
+        const nextOffsetHref = firstKey ? body.results[firstKey]?.next : undefined
 
         if (nextOffsetHref) {
             const nextOffsetUrl = new URL(this.baseUrl + nextOffsetHref)
@@ -83,21 +84,21 @@ export class MusicKit {
             }
         }
 
-        for (const key of Object.keys(body.results)) {
-            const result = body.results[key as keyof typeof body.results]
+        for (const key of Object.keys(body.results) as SearchType[]) {
+            const result = body.results[key]
 
             if (!result) continue
 
-            let results = []
+            const items: any[] = []
         
             for (const item of result.data) {
-                results.push({
+                items.push({
                     id: item.id,
                     ...item.attributes
                 })
             }
 
-            temp.results[key as keyof typeof body.results] = results
+            temp.results[key] = items
         }
 
         return {
