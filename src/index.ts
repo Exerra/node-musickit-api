@@ -1,4 +1,4 @@
-import type { SearchParams, SearchResultRaw } from "./types/search";
+import type { SearchParams, SearchResult, SearchResultRaw } from "./types/search";
 import { createJWT } from "./util/jwt";
 
 export type MusicKitProps = {
@@ -44,5 +44,66 @@ export class MusicKit {
         })
 
         return req.status
+    }
+
+    // TODO make the SearchResult and SearchResultRaw type dynamically list what keys will be returned based on the params
+    // TODO make the return value vary based on the raw param. If raw is true, return SearchResultRaw, else return SearchResult
+    async search(storefront: string, params: SearchParams, raw = false): Promise<MusicKitResultWrapper<SearchResultRaw>> {
+        const searchparams = new URLSearchParams(params as any)
+
+        const req = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?${searchparams.toString()}`, {
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            }
+        })
+
+        const body = await req.json() as SearchResultRaw
+
+        if (raw) {
+            return {
+                status: req.status,
+                data: body,
+                error: req.status !== 200 ? await req.text() : null
+            }
+        }
+
+        let temp = {
+            nextOffset: null as number | null,
+            results: {}
+        } as SearchResult
+
+        const nextOffsetHref = body.results[Object.keys(body.results)[0] as keyof typeof body.results]?.next
+
+        if (nextOffsetHref) {
+            const nextOffsetUrl = new URL(this.baseUrl + nextOffsetHref)
+            const nextOffsetParam = nextOffsetUrl.searchParams.get("offset")
+
+            if (nextOffsetParam) {
+                temp.nextOffset = parseInt(nextOffsetParam)
+            }
+        }
+
+        for (const key of Object.keys(body.results)) {
+            const result = body.results[key as keyof typeof body.results]
+
+            if (!result) continue
+
+            let results = []
+        
+            for (const item of result.data) {
+                results.push({
+                    id: item.id,
+                    ...item.attributes
+                })
+            }
+
+            temp.results[key as keyof typeof body.results] = results
+        }
+
+        return {
+            status: req.status,
+            data: temp,
+            error: req.status !== 200 ? await req.text() : null
+        }
     }
 }
