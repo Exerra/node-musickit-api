@@ -14,7 +14,8 @@ export class MusicVideosResource {
             return res;
         }
 
-        const items = res.data.map(item => flattenItem(item))
+        // Copilot suggested the explicit type assertion since it was missing while the rest of the codebase has it
+        const items = res.data.map(item => flattenItem(item) as MusicVideo & {relationships: MusicVideoRelationships}) 
 
         return {
             status: res.status,
@@ -32,7 +33,8 @@ export class MusicVideosResource {
             return res;
         }
 
-        const items = res.data.map(item => flattenItem(item))
+        // Copilot suggested the explicit type assertion
+        const items = res.data.map(item => flattenItem(item) as MusicVideo & {relationships: MusicVideoRelationships})
 
         return {
             status: res.status,
