@@ -1,6 +1,6 @@
 import type { FetchAPI, MusicKitResultWrapper } from ".."
 import type { AlbumRaw, AlbumRelationships } from "../types/album"
-import type { Artist, ArtistRaw, ArtistRelationships, ArtistRelationshipsRaw } from "../types/artist"
+import type { Artist, ArtistRaw } from "../types/artist"
 import { flattenItem } from "../util/flatten"
 
 export class ArtistsResource {
@@ -9,7 +9,7 @@ export class ArtistsResource {
     async get(storefront: string, id: string, raw: true): Promise<MusicKitResultWrapper<ArtistRaw[]>>;
     async get(storefront: string, id: string, raw?: false): Promise<MusicKitResultWrapper<Artist[]>>;
     async get(storefront: string, id: string, raw = false) {
-        const res = await this.fetch<(ArtistRaw & {relationships: ArtistRelationshipsRaw})[]>(`/catalog/${storefront}/artists/${id}`)
+        const res = await this.fetch<(ArtistRaw)[]>(`/catalog/${storefront}/artists/${id}`)
 
         if (raw) {
             return res;
