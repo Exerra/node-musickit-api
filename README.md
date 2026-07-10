@@ -37,7 +37,7 @@ const musicKit = new MusicKit({
 await musicKit.auth();
 
 // Fetch a song by its Apple Music catalog ID
-const song = await musicKit.songs.get("us", "203709340");
+const song = await musicKit.songs.get("us", "1893742010");
 console.log(song.data);
 ```
 
