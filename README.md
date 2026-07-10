@@ -5,6 +5,8 @@ A TypeScript wrapper for the [Apple Music API](https://developer.apple.com/docum
 [![npm version](https://img.shields.io/npm/v/node-musickit-api)](https://www.npmjs.com/package/node-musickit-api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+> **v3 is a complete rewrite.** Nothing is shared with previous versions — API, types, and internals are all new. If you're migrating from v2, treat this as a new package.
+
 ## Requirements
 
 You must be enrolled in the paid [Apple Developer Program](https://developer.apple.com/programs/) ($99/yr) and have created a key with MusicKit privileges.
