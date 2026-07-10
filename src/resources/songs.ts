@@ -1,5 +1,6 @@
 import type { Song, SongRaw, SongRelationships, SongRelationshipsRaw } from "../types/song"
 import type { FetchAPI, MusicKitResultWrapper } from "../index"
+import { flattenItem } from "../util/flatten"
 
 export class SongsResource {
     constructor(private fetch: FetchAPI) {}
@@ -13,30 +14,7 @@ export class SongsResource {
             return res;
         }
 
-        // Apply flattening logic to relationships
-        const items = res.data.map(item => {
-            let tempItem = {
-                id: item.id,
-                ...item.attributes
-            } as Song & {relationships: SongRelationships}
-
-            if (item.relationships) {
-                for (const relKey of Object.keys(item.relationships)) {
-                    const rel = item.relationships[relKey as keyof typeof item.relationships]
-
-                    if (rel && rel.data) {
-                        tempItem = {
-                            ...tempItem,
-                            relationships: {
-                                ...(tempItem.relationships ?? {}),
-                                [relKey]: rel.data
-                            }
-                        }
-                    }
-                }
-            }
-            return tempItem
-        })
+        const items = res.data.map(item => flattenItem(item) as Song & {relationships: SongRelationships})
 
         return {
             status: res.status,
@@ -54,30 +32,7 @@ export class SongsResource {
             return res;
         }
 
-        // Apply flattening logic to relationships
-        const items = res.data.map(item => {
-            let tempItem = {
-                id: item.id,
-                ...item.attributes
-            } as Song & {relationships: SongRelationships}
-
-            if (item.relationships) {
-                for (const relKey of Object.keys(item.relationships)) {
-                    const rel = item.relationships[relKey as keyof typeof item.relationships]
-
-                    if (rel && rel.data) {
-                        tempItem = {
-                            ...tempItem,
-                            relationships: {
-                                ...(tempItem.relationships ?? {}),
-                                [relKey]: rel.data
-                            }
-                        }
-                    }
-                }
-            }
-            return tempItem
-        })
+        const items = res.data.map(item => flattenItem(item) as Song & {relationships: SongRelationships})
 
         return {
             status: res.status,

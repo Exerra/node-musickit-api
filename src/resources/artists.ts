@@ -1,6 +1,7 @@
 import type { FetchAPI, MusicKitResultWrapper } from ".."
 import type { AlbumRaw, AlbumRelationships } from "../types/album"
 import type { Artist, ArtistRaw, ArtistRelationships, ArtistRelationshipsRaw } from "../types/artist"
+import { flattenItem } from "../util/flatten"
 
 export class ArtistsResource {
     constructor(private fetch: FetchAPI) {}
@@ -14,30 +15,7 @@ export class ArtistsResource {
             return res;
         }
 
-        // Apply flattening logic to relationships
-        const items = res.data.map(item => {
-            let tempItem = {
-                id: item.id,
-                ...item.attributes
-            } as Artist
-
-            if (item.relationships) {
-                for (const relKey of Object.keys(item.relationships)) {
-                    const rel = item.relationships[relKey as keyof typeof item.relationships]
-
-                    if (rel && rel.data) {
-                        tempItem = {
-                            ...tempItem,
-                            relationships: {
-                                ...(tempItem.relationships ?? {}),
-                                [relKey]: rel.data
-                            }
-                        }
-                    }
-                }
-            }
-            return tempItem
-        })
+        const items = res.data.map(item => flattenItem(item) as Artist)
 
         return {
             status: res.status,
