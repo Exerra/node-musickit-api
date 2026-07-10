@@ -1,4 +1,3 @@
-import type { SearchType } from "./search";
 import type { SongRaw } from "./song";
 
 export type GenericRelationshipRaw = {
