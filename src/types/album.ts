@@ -1,5 +1,5 @@
 import type { PlayParams } from "./play";
-import type { GenericRelationship, TrackRelationship } from "./relationships";
+import type { GenericRelationship, GenericRelationshipRaw, TrackRelationship, TrackRelationshipRaw } from "./relationships";
 
 export interface AlbumRaw {
     id:         string;
@@ -15,6 +15,11 @@ export type Album = {
 export type AlbumRelationships = {
     artists: GenericRelationship;
     tracks: TrackRelationship;
+}
+
+export type AlbumRelationshipsRaw = {
+    artists: GenericRelationshipRaw;
+    tracks: TrackRelationshipRaw;
 }
 
 export interface Attributes {
