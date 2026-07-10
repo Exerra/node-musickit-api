@@ -25,7 +25,7 @@ export interface Attributes {
     name:             string;
     playParams:       PlayParams;
     previews:         Preview[];
-    releaseDate:      Date;
+    releaseDate:      string;//Date;
     url:              string;
 }
 
