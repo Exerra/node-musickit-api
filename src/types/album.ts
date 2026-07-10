@@ -35,7 +35,7 @@ export interface Attributes {
     name:                string;
     playParams:          PlayParams;
     recordLabel:         string;
-    releaseDate:         Date;
+    releaseDate:         string;//Date;
     trackCount:          number;
     upc:                 string;
     url:                 string;
