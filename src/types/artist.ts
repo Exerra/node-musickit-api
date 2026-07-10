@@ -1,11 +1,11 @@
-import type { GenericRelationship } from "./relationships";
+import type { GenericRelationship, GenericRelationshipRaw } from "./relationships";
 
 export interface ArtistRaw {
     id:         string;
     type:       string;
     href:       string;
     attributes: Attributes;
-    relationships: ArtistRelationships & { albums: { next: string } };
+    relationships: ArtistRelationshipsRaw & { albums: { next: string } };
 }
 
 export type Artist = {
@@ -14,6 +14,10 @@ export type Artist = {
 
 export interface ArtistRelationships {
     albums: GenericRelationship;
+}
+
+export interface ArtistRelationshipsRaw {
+    albums: GenericRelationshipRaw;
 }
 
 export interface Attributes {

@@ -1,4 +1,4 @@
-import type { GenericRelationship } from "./relationships";
+import type { GenericRelationship, GenericRelationshipRaw } from "./relationships";
 
 export interface MusicVideoRaw {
     id:         string;
@@ -11,6 +11,7 @@ export type MusicVideo = {
     id:         string;
 } & Attributes
 
+export type MusicVideoRelationshipsRaw = Partial<Record<"albums" | "artists", GenericRelationshipRaw>>
 export type MusicVideoRelationships = Partial<Record<"albums" | "artists", GenericRelationship>>
 
 export interface Attributes {
