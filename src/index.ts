@@ -1,5 +1,6 @@
 import type { SearchParams, SearchResult, SearchResultRaw, SearchType } from "./types/search";
 import { createJWT } from "./util/jwt";
+import { flattenItem } from "./util/flatten";
 import { SongsResource } from "./resources/songs";
 import { AlbumsResource } from "./resources/albums";
 import { ArtistsResource } from "./resources/artists";
@@ -128,40 +129,12 @@ export class MusicKit {
             }
         }
 
-        // Removes unnecessary fields like href and next (which is already handled by nextOffset)
         for (const key of Object.keys(body.results) as SearchType[]) {
             const result = body.results[key]
 
             if (!result) continue
 
-            const items: any[] = []
-        
-            for (const item of result.data) {
-                let tempItem = {
-                    id: item.id,
-                    ...item.attributes
-                }
-
-                // Applies the same flattening logic to relationships as well, if they exist. The relationship object *also* contains the very same next and href fields.
-                if (item.relationships) {
-                    for (const relKey of Object.keys(item.relationships)) {
-                        const rel = item.relationships[relKey as keyof typeof item.relationships]
-
-                        if (rel && rel.data) {
-                            tempItem = {
-                                ...tempItem,
-                                relationships: {
-                                    ...(tempItem.relationships ?? {}),
-                                    [relKey]: rel.data
-                                }
-                            }
-                        }
-                    }
-                }
-                items.push(tempItem)
-            }
-
-            (temp.results as any)[key] = items
+            (temp.results as any)[key] = result.data.map(item => flattenItem(item))
         }
 
         return {

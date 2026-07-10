@@ -1,5 +1,6 @@
 import type { FetchAPI, MusicKitResultWrapper } from "..";
 import type { MusicVideo, MusicVideoRaw, MusicVideoRelationships, MusicVideoRelationshipsRaw } from "../types/musicvideo";
+import { flattenItem } from "../util/flatten";
 
 export class MusicVideosResource {
     constructor(private fetch: FetchAPI) {}
@@ -13,33 +14,7 @@ export class MusicVideosResource {
             return res;
         }
 
-        let items = []
-
-        for (const item of res.data) {
-            let tempItem = {
-                id: item.id,
-                ...item.attributes
-            } as any
-        
-
-            // Applies the same flattening logic to relationships as well, if they exist. The relationship object *also* contains the very same next and href fields.
-            if (item.relationships) {
-                for (const relKey of Object.keys(item.relationships)) {
-                    const rel = item.relationships[relKey as keyof typeof item.relationships]
-
-                    if (rel && rel.data) {
-                        tempItem = {
-                            ...tempItem,
-                            relationships: {
-                                ...(tempItem.relationships ?? {}),
-                                [relKey]: rel.data
-                            }
-                        }
-                    }
-                }
-            }
-            items.push(tempItem)
-        }
+        const items = res.data.map(item => flattenItem(item))
 
         return {
             status: res.status,
@@ -57,33 +32,7 @@ export class MusicVideosResource {
             return res;
         }
 
-        let items = []
-
-        for (const item of res.data) {
-            let tempItem = {
-                id: item.id,
-                ...item.attributes
-            } as any
-        
-
-            // Applies the same flattening logic to relationships as well, if they exist. The relationship object *also* contains the very same next and href fields.
-            if (item.relationships) {
-                for (const relKey of Object.keys(item.relationships)) {
-                    const rel = item.relationships[relKey as keyof typeof item.relationships]
-
-                    if (rel && rel.data) {
-                        tempItem = {
-                            ...tempItem,
-                            relationships: {
-                                ...(tempItem.relationships ?? {}),
-                                [relKey]: rel.data
-                            }
-                        }
-                    }
-                }
-            }
-            items.push(tempItem)
-        }
+        const items = res.data.map(item => flattenItem(item))
 
         return {
             status: res.status,
