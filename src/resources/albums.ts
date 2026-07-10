@@ -10,7 +10,7 @@ export class AlbumsResource {
     async get(storefront: string, id: string, raw = false) {
         const res = await this.fetch<(AlbumRaw & {relationships: AlbumRelationshipsRaw})[]>(`/catalog/${storefront}/albums/${id}`)
 
-        if (raw) {
+        if (raw || res.error) {
             return res;
         }
 
@@ -28,7 +28,7 @@ export class AlbumsResource {
     async getByUPC(storefront: string, upc: string, raw = false) {
         const res = await this.fetch<(AlbumRaw & {relationships: AlbumRelationshipsRaw})[]>(`/catalog/${storefront}/albums?filter[upc]=${encodeURIComponent(upc)}`)
 
-        if (raw) {
+        if (raw || res.error) {
             return res;
         }
 
