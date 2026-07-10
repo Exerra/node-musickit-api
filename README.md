@@ -132,15 +132,6 @@ const results = await musicKit.search("us", {
 console.log(results.data.results.songs);
 ```
 
-## TypeScript
-
-This package is written in TypeScript and ships with full type definitions. Import types directly:
-
-```ts
-import { MusicKit, type MusicKitProps, type MusicKitResultWrapper } from "node-musickit-api";
-import type { Song, Album, Artist } from "node-musickit-api";
-```
-
 ## Documentation
 
 Full API reference is available at [musickit.js.org](https://musickit.js.org/#/).
