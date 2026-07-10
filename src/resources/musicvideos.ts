@@ -23,8 +23,8 @@ export class MusicVideosResource {
         };
     }
 
-    async getByISRC(storefront: string, id: string, raw: true): Promise<MusicKitResultWrapper<(MusicVideoRaw & {relationships: MusicVideoRelationshipsRaw})[]>>;
-    async getByISRC(storefront: string, id: string, raw?: false): Promise<MusicKitResultWrapper<(MusicVideo & {relationships: MusicVideoRelationships})[]>>;
+    async getByISRC(storefront: string, isrc: string, raw: true): Promise<MusicKitResultWrapper<(MusicVideoRaw & {relationships: MusicVideoRelationshipsRaw})[]>>;
+    async getByISRC(storefront: string, isrc: string, raw?: false): Promise<MusicKitResultWrapper<(MusicVideo & {relationships: MusicVideoRelationships})[]>>;
     async getByISRC(storefront: string, isrc: string, raw = false) {
         const res = await this.fetch<(MusicVideoRaw & {relationships: MusicVideoRelationshipsRaw})[]>(`/catalog/${storefront}/music-videos?filter[isrc]=${encodeURIComponent(isrc)}`)
 
