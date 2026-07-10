@@ -44,6 +44,14 @@ export class MusicKit {
             }
         })
 
+        if (req.status >= 300 || req.status < 200) {
+            return {
+                status: req.status,
+                data: null as any,
+                error: await req.text()
+            }
+        }
+
         const body = await req.json() as { data: T }
 
         return {
