@@ -38,6 +38,10 @@ export class MusicKit {
     }
 
     private async fetchAPI<T>(path: string): Promise<MusicKitResultWrapper<T>> {
+        if (!this.token) {
+            throw new Error("You must call auth() before making requests")
+        }
+        
         const req = await fetch(`${this.baseUrl}${path}`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
@@ -89,6 +93,10 @@ export class MusicKit {
 
     // Resolves issue #10
     async testAuth() {
+        if (!this.token) {
+            throw new Error("You must call auth() before making requests")
+        }
+
         const req = await fetch(`${this.baseUrl}/test`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
@@ -101,6 +109,10 @@ export class MusicKit {
     async search(storefront: string, params: SearchParams, raw: true): Promise<MusicKitResultWrapper<SearchResultRaw>>;
     async search(storefront: string, params: SearchParams, raw?: false): Promise<MusicKitResultWrapper<SearchResult>>;
     async search(storefront: string, params: SearchParams, raw = false): Promise<MusicKitResultWrapper<SearchResultRaw | SearchResult>> {
+        if (!this.token) {
+            throw new Error("You must call auth() before making requests")
+        }
+        
         const searchparams = new URLSearchParams(params as any)
 
         // Refactor to fetchAPI? Not sure if it would be worth it, access to the raw data is needed and it would be another step. Only really makes the raw response code nicer.
