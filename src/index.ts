@@ -5,6 +5,7 @@ import { SongsResource } from "./resources/songs";
 import { AlbumsResource } from "./resources/albums";
 import { ArtistsResource } from "./resources/artists";
 import { MusicVideosResource } from "./resources/musicvideos";
+import { StorefrontsResource } from "./resources/storefronts";
 
 export type MusicKitProps = {
     key: {
@@ -41,7 +42,7 @@ export class MusicKit {
         if (!this.token) {
             throw new Error("You must call auth() before making requests")
         }
-        
+
         const req = await fetch(`${this.baseUrl}${path}`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
@@ -69,6 +70,7 @@ export class MusicKit {
     private _albums?: AlbumsResource
     private _artists?: ArtistsResource
     private _musicVideos?: MusicVideosResource
+    private _storefronts?: StorefrontsResource
 
     get songs() {
         return this._songs ??= new SongsResource(<T>(path: string) => this.fetchAPI<T>(path))
@@ -84,6 +86,10 @@ export class MusicKit {
 
     get musicVideos() {
         return this._musicVideos ??= new MusicVideosResource(<T>(path: string) => this.fetchAPI<T>(path))
+    }
+
+    get storefronts() {
+        return this._storefronts ??= new StorefrontsResource(<T>(path: string) => this.fetchAPI<T>(path))
     }
 
     async auth() {
