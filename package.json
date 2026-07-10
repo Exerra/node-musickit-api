@@ -2,8 +2,27 @@
   "name": "node-musickit-api",
   "version": "3.0.0",
   "description": "A wrapper for the Apple Music API written in NodeJS",
-  "module": "src/index.ts",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "bun": "./src/index.ts",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun run build:js && bun run build:types",
+    "build:js": "bun build ./src/index.ts --outdir ./dist --target node --format esm --packages=external --sourcemap=external",
+    "build:types": "bunx tsc -p tsconfig.build.json",
+    "prepublishOnly": "bun run build",
+    "prepack": "bun run build"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
