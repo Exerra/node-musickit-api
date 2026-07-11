@@ -6,6 +6,7 @@ import { AlbumsResource } from "./resources/albums";
 import { ArtistsResource } from "./resources/artists";
 import { MusicVideosResource } from "./resources/musicvideos";
 import { StorefrontsResource } from "./resources/storefronts";
+import { MeResource } from "./resources/me";
 
 export type MusicKitProps = {
     key: {
@@ -22,7 +23,7 @@ export type MusicKitResultWrapper<T> = {
     error: string | null;
 }
 
-export type FetchAPI = <T>(path: string) => Promise<MusicKitResultWrapper<T>>
+export type FetchAPI = <T>(path: string, opts?: BunFetchRequestInit) => Promise<MusicKitResultWrapper<T>>
 
 export class MusicKit {
     // Public in case users want to proxy the URL or use a local server for testing
@@ -42,13 +43,17 @@ export class MusicKit {
             throw new Error("Missing required key properties");
         }
 
-        if (props.mediaUserToken) this.mediaUserToken = props.mediaUserToken;
+        // ! not sure if I should have both mediaUserToken and headers["Music-User-Token"] or just one of them. For now, both.
+        if (props.mediaUserToken) {
+            this.mediaUserToken = props.mediaUserToken;
+            this.headers["Music-User-Token"] = props.mediaUserToken;
+        }
 
         this.key = props.key;
     }
 
     // Was private, made public for extendability.
-    async fetchAPI<T>(path: string, options?: BunFetchRequestInit): Promise<MusicKitResultWrapper<T>> {
+    async fetchAPI<T>(path: string, opts?: BunFetchRequestInit): Promise<MusicKitResultWrapper<T>> {
         if (!this.token) {
             throw new Error("You must call auth() before making requests")
         }
@@ -58,7 +63,7 @@ export class MusicKit {
                 "Authorization": `Bearer ${this.token}`,
                 ...this.headers
             },
-            ...options
+            ...opts
         })
 
         if (req.status >= 300 || req.status < 200) {
@@ -83,6 +88,7 @@ export class MusicKit {
     private _artists?: ArtistsResource
     private _musicVideos?: MusicVideosResource
     private _storefronts?: StorefrontsResource
+    private _me?: MeResource
 
     get songs() {
         return this._songs ??= new SongsResource(<T>(path: string) => this.fetchAPI<T>(path))
@@ -102,6 +108,10 @@ export class MusicKit {
 
     get storefronts() {
         return this._storefronts ??= new StorefrontsResource(<T>(path: string) => this.fetchAPI<T>(path))
+    }
+
+    get me() {
+        return this._me ??= new MeResource(<T>(path: string) => this.fetchAPI<T>(path), this.mediaUserToken ?? undefined)
     }
 
     async auth() {
