@@ -7,4 +7,7 @@ export type HeavyRotationItemRaw =
     | (AlbumRaw & { type: "albums" })
     | (LibraryPlaylistRaw & { type: "library-playlists" });
 
-export type HeavyRotationItem = Song | Album | LibraryPlaylist;
+export type HeavyRotationItem =
+    | (Song & { type: "songs" })
+    | (Album & { type: "albums" })
+    | (LibraryPlaylist & { type: "library-playlists" });

@@ -10,7 +10,11 @@ export class MusicVideosResource {
     async get(storefront: string, id: string, raw = false) {
         const res = await this.fetch<(MusicVideoRaw & {relationships: MusicVideoRelationshipsRaw})[]>(`/catalog/${storefront}/music-videos/${id}`)
         
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -20,7 +24,7 @@ export class MusicVideosResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         };
     }
 
@@ -29,7 +33,11 @@ export class MusicVideosResource {
     async getByISRC(storefront: string, isrc: string, raw = false) {
         const res = await this.fetch<(MusicVideoRaw & {relationships: MusicVideoRelationshipsRaw})[]>(`/catalog/${storefront}/music-videos?filter[isrc]=${encodeURIComponent(isrc)}`)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -39,7 +47,7 @@ export class MusicVideosResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         };
     }
 }

@@ -10,6 +10,7 @@ export interface SongRaw {
 
 export type Song = {
     id:         string;
+    type:       string;
 } & Attributes
 
 export type SongRelationshipsRaw = Partial<Record<"albums" | "artists", GenericRelationshipRaw>>

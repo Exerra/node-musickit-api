@@ -10,6 +10,7 @@ export interface AlbumRaw {
 
 export type Album = {
     id:         string;
+    type:       string;
 } & Attributes
 
 export type AlbumRelationships = {

@@ -9,6 +9,7 @@ export interface MusicVideoRaw {
 
 export type MusicVideo = {
     id:         string;
+    type:       string;
 } & Attributes
 
 export type MusicVideoRelationshipsRaw = Partial<Record<"albums" | "artists", GenericRelationshipRaw>>

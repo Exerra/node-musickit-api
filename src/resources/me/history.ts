@@ -18,12 +18,15 @@ type MeHistoryRecentlyPlayedTracksProps = MeHistoryGenericProps & {
 }
 
 export class MeHistoryResource {
-    constructor(private fetch: FetchAPI, private mediaUserToken?: string) {}
+    constructor(
+        private fetch: FetchAPI,
+        private getMediaUserToken: () => string | null | undefined,
+    ) {}
 
     async getRecentlyPlayedTracks(props: MeHistoryRecentlyPlayedTracksProps, raw: true): Promise<MusicKitResultWrapper<SongRaw[]>>;
     async getRecentlyPlayedTracks(props: MeHistoryRecentlyPlayedTracksProps, raw?: false): Promise<MusicKitResultWrapper<Song[]>>;
     async getRecentlyPlayedTracks(props: MeHistoryRecentlyPlayedTracksProps, raw = false) {
-        if (!this.mediaUserToken) {
+        if (!this.getMediaUserToken()) {
             throw new Error("Media user token is required for this endpoint");
         }
 
@@ -31,7 +34,11 @@ export class MeHistoryResource {
 
         const res = await this.fetch<SongRaw[]>(`/me/recent/played/tracks` + queryParams)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -40,15 +47,14 @@ export class MeHistoryResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 
-    // ! NEEDS FIXING: Once item has been flattened it loses its type key, so we can't tell if it's a Song, Album, or LibraryPlaylist. Need to find a way to preserve the type key when flattening.
     async getHeavyRotation(props: MeHistoryGenericProps, raw: true): Promise<MusicKitResultWrapper<HeavyRotationItemRaw[]>>;
     async getHeavyRotation(props: MeHistoryGenericProps, raw?: false): Promise<MusicKitResultWrapper<HeavyRotationItem[]>>;
     async getHeavyRotation(props: MeHistoryGenericProps, raw = false) {
-        if (!this.mediaUserToken) {
+        if (!this.getMediaUserToken()) {
             throw new Error("Media user token is required for this endpoint");
         }
 
@@ -56,16 +62,20 @@ export class MeHistoryResource {
 
         const res = await this.fetch<HeavyRotationItemRaw[]>(`/me/history/heavy-rotation` + queryParams)
 
-        if (raw || res.error) {
+        if (raw) {
             return res;
         }
 
-        const items = res.data.map(item => flattenItem(item))
+        if (res.error !== null) {
+            return res;
+        }
+
+        const items = res.data.map(item => flattenItem(item) as HeavyRotationItem)
 
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 }

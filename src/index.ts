@@ -17,11 +17,9 @@ export type MusicKitProps = {
     mediaUserToken?: string;
 }
 
-export type MusicKitResultWrapper<T> = {
-    status: number;
-    data: T;
-    error: string | null;
-}
+export type MusicKitResultWrapper<T> =
+    | { status: number; data: T; error: null }
+    | { status: number; data: null; error: string }
 
 export type FetchAPI = <T>(path: string, opts?: BunFetchRequestInit) => Promise<MusicKitResultWrapper<T>>
 
@@ -30,7 +28,7 @@ export class MusicKit {
     public baseUrl = "https://api.music.apple.com/v1";
 
     token: string | null = null;
-    // For personalised routes
+    // Single source of truth for personalised routes (injected as Music-User-Token on each request)
     mediaUserToken: string | null = null;
 
     // Mostly to allow users to add origin headers, etc.
@@ -43,13 +41,19 @@ export class MusicKit {
             throw new Error("Missing required key properties");
         }
 
-        // ! not sure if I should have both mediaUserToken and headers["Music-User-Token"] or just one of them. For now, both.
         if (props.mediaUserToken) {
             this.mediaUserToken = props.mediaUserToken;
-            this.headers["Music-User-Token"] = props.mediaUserToken;
         }
 
         this.key = props.key;
+    }
+
+    private getRequestHeaders(): Record<string, string> {
+        return {
+            "Authorization": `Bearer ${this.token}`,
+            ...this.headers,
+            ...(this.mediaUserToken ? { "Music-User-Token": this.mediaUserToken } : {}),
+        }
     }
 
     // Was private, made public for extendability.
@@ -59,17 +63,14 @@ export class MusicKit {
         }
 
         const req = await fetch(`${this.baseUrl}${path}`, {
-            headers: {
-                "Authorization": `Bearer ${this.token}`,
-                ...this.headers
-            },
+            headers: this.getRequestHeaders(),
             ...opts
         })
 
         if (req.status >= 300 || req.status < 200) {
             return {
                 status: req.status,
-                data: null as any,
+                data: null,
                 error: await req.text()
             }
         }
@@ -79,7 +80,7 @@ export class MusicKit {
         return {
             status: req.status,
             data: body.data,
-            error: req.status !== 200 ? await req.text() : null
+            error: null
         }
     }
 
@@ -111,7 +112,10 @@ export class MusicKit {
     }
 
     get me() {
-        return this._me ??= new MeResource(<T>(path: string) => this.fetchAPI<T>(path), this.mediaUserToken ?? undefined)
+        return this._me ??= new MeResource(
+            <T>(path: string) => this.fetchAPI<T>(path),
+            () => this.mediaUserToken,
+        )
     }
 
     async auth() {
@@ -126,9 +130,7 @@ export class MusicKit {
         }
 
         const req = await fetch(`${this.baseUrl}/test`, {
-            headers: {
-                "Authorization": `Bearer ${this.token}`
-            }
+            headers: this.getRequestHeaders()
         })
 
         return req.status
@@ -143,17 +145,15 @@ export class MusicKit {
         
         const searchparams = new URLSearchParams(params as any)
 
-        // Refactor to fetchAPI? Not sure if it would be worth it, access to the raw data is needed and it would be another step. Only really makes the raw response code nicer.
+        // Search response shape is { results, meta }, not { data }, so it cannot use fetchAPI as-is.
         const req = await fetch(`${this.baseUrl}/catalog/${storefront}/search?${searchparams.toString()}`, {
-            headers: {
-                "Authorization": `Bearer ${this.token}`
-            }
+            headers: this.getRequestHeaders()
         })
 
         if (req.status >= 300 || req.status < 200) {
             return {
                 status: req.status,
-                data: null as any,
+                data: null,
                 error: await req.text()
             }
         }
@@ -164,7 +164,7 @@ export class MusicKit {
             return {
                 status: req.status,
                 data: body,
-                error: req.status !== 200 ? await req.text() : null
+                error: null
             }
         }
 
@@ -196,7 +196,7 @@ export class MusicKit {
         return {
             status: req.status,
             data: temp,
-            error: req.status !== 200 ? await req.text() : null
+            error: null
         }
     }
 

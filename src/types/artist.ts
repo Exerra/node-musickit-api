@@ -10,6 +10,7 @@ export interface ArtistRaw {
 
 export type Artist = {
     id:         string;
+    type:       string;
 } & Attributes & { relationships: ArtistRelationships }
 
 export interface ArtistRelationships {

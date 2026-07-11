@@ -7,6 +7,7 @@ export interface StorefrontRaw {
 
 export type Storefront = {
     id: string;
+    type: string;
 } & Attributes
 
 export interface Attributes {

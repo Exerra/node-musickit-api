@@ -9,6 +9,7 @@ export interface LibraryPlaylistRaw {
 
 export type LibraryPlaylist = {
     id:         string;
+    type:       string;
 } & Attributes
 
 export interface Attributes {

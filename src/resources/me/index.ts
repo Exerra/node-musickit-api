@@ -4,24 +4,31 @@ import { flattenItem } from "../../util/flatten";
 import { MeHistoryResource } from "./history";
 
 export class MeResource {
-    constructor(private fetch: FetchAPI, private mediaUserToken?: string) {}
+    constructor(
+        private fetch: FetchAPI,
+        private getMediaUserToken: () => string | null | undefined,
+    ) {}
 
     private _history?: MeHistoryResource
 
     get history() {
-        return this._history ??= new MeHistoryResource(this.fetch, this.mediaUserToken ?? undefined)
+        return this._history ??= new MeHistoryResource(this.fetch, this.getMediaUserToken)
     }
 
     async getStorefront(raw: true): Promise<MusicKitResultWrapper<StorefrontRaw[]>>;
     async getStorefront(raw?: false): Promise<MusicKitResultWrapper<Storefront[]>>;
     async getStorefront(raw = false) {
-        if (!this.mediaUserToken) {
+        if (!this.getMediaUserToken()) {
             throw new Error("Missing required mediaUserToken");
         }
 
         const res = await this.fetch<StorefrontRaw[]>(`/me/storefront`)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -30,7 +37,7 @@ export class MeResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 }
