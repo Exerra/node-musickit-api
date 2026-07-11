@@ -27,7 +27,10 @@ export class MusicKit {
     // Public in case users want to proxy the URL or use a local server for testing
     public baseUrl = "https://api.music.apple.com/v1";
 
-    private token: string | null = null;
+    token: string | null = null;
+    // Mostly to allow users to add origin headers, etc.
+    headers: Record<string, string> = {}
+    
     private key: MusicKitProps['key'];
 
     constructor(props: MusicKitProps) {
@@ -38,14 +41,16 @@ export class MusicKit {
         this.key = props.key;
     }
 
-    private async fetchAPI<T>(path: string): Promise<MusicKitResultWrapper<T>> {
+    // Was private, made public for extendability.
+    async fetchAPI<T>(path: string): Promise<MusicKitResultWrapper<T>> {
         if (!this.token) {
             throw new Error("You must call auth() before making requests")
         }
 
         const req = await fetch(`${this.baseUrl}${path}`, {
             headers: {
-                "Authorization": `Bearer ${this.token}`
+                "Authorization": `Bearer ${this.token}`,
+                ...this.headers
             }
         })
 
