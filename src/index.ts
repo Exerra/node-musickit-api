@@ -12,7 +12,8 @@ export type MusicKitProps = {
         id: string;
         teamId: string;
         p8: string;
-    }
+    },
+    mediaUserToken?: string;
 }
 
 export type MusicKitResultWrapper<T> = {
@@ -28,9 +29,12 @@ export class MusicKit {
     public baseUrl = "https://api.music.apple.com/v1";
 
     token: string | null = null;
+    // For personalised routes
+    mediaUserToken: string | null = null;
+
     // Mostly to allow users to add origin headers, etc.
     headers: Record<string, string> = {}
-    
+
     private key: MusicKitProps['key'];
 
     constructor(props: MusicKitProps) {
@@ -38,11 +42,13 @@ export class MusicKit {
             throw new Error("Missing required key properties");
         }
 
+        if (props.mediaUserToken) this.mediaUserToken = props.mediaUserToken;
+
         this.key = props.key;
     }
 
     // Was private, made public for extendability.
-    async fetchAPI<T>(path: string): Promise<MusicKitResultWrapper<T>> {
+    async fetchAPI<T>(path: string, options?: BunFetchRequestInit): Promise<MusicKitResultWrapper<T>> {
         if (!this.token) {
             throw new Error("You must call auth() before making requests")
         }
@@ -51,7 +57,8 @@ export class MusicKit {
             headers: {
                 "Authorization": `Bearer ${this.token}`,
                 ...this.headers
-            }
+            },
+            ...options
         })
 
         if (req.status >= 300 || req.status < 200) {
