@@ -1,5 +1,7 @@
 # node-musickit-api
 
+> ⚠️ As of writing the docs have changed for musickit.js.org and the domain hasn't been changed to reflect that yet. If the domain doesn't work, use https://exerra.github.io/node-musickit-api-docs/
+
 A TypeScript wrapper for the [Apple Music API](https://developer.apple.com/documentation/applemusicapi) for Node.js. Fully typed, promise-based, and ready for production.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
