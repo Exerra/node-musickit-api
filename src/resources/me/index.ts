@@ -3,6 +3,16 @@ import type { Storefront, StorefrontRaw } from "../../types/storefront";
 import { flattenItem } from "../../util/flatten";
 import { MeHistoryResource } from "./history";
 
+export type AddToFavouriteProps = {
+    "ids[songs]": string[];
+    "ids[albums]"?: string[];
+    "ids[artists]"?: string[];
+    "ids[playlists]"?: string[];
+    "ids[music-videos]"?: string[];
+    "ids[stations]"?: string[];
+    l?: string;
+}
+
 export class MeResource {
     constructor(
         private fetch: FetchAPI,
@@ -39,5 +49,19 @@ export class MeResource {
             data: items,
             error: null
         }
+    }
+
+    async addToFavorites(params: AddToFavouriteProps): Promise<MusicKitResultWrapper<null>> {
+        if (!this.getMediaUserToken()) {
+            throw new Error("Missing required mediaUserToken");
+        }
+
+        const queryParams = "?" + new URLSearchParams(params as unknown as Record<string, string> || {}).toString();
+
+        const res = await this.fetch<null>(`/me/favorites${queryParams}`, {
+            method: "POST"
+        })
+
+        return res
     }
 }
