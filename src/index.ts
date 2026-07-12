@@ -77,9 +77,17 @@ export class MusicKit {
 
         const body = await req.json() as { data: T }
 
+        if (!body) {
+            return {
+                status: req.status,
+                data: null as T,
+                error: null
+            }
+        }
+
         return {
             status: req.status,
-            data: body.data,
+            data: (body.data ?? null) as T,
             error: null
         }
     }
@@ -92,28 +100,28 @@ export class MusicKit {
     private _me?: MeResource
 
     get songs() {
-        return this._songs ??= new SongsResource(<T>(path: string) => this.fetchAPI<T>(path))
+        return this._songs ??= new SongsResource(<T>(path: string, opts?: BunFetchRequestInit) => this.fetchAPI<T>(path, opts))
     }
 
     get albums() {
-        return this._albums ??= new AlbumsResource(<T>(path: string) => this.fetchAPI<T>(path))
+        return this._albums ??= new AlbumsResource(<T>(path: string, opts?: BunFetchRequestInit) => this.fetchAPI<T>(path, opts))
     }
 
     get artists() {
-        return this._artists ??= new ArtistsResource(<T>(path: string) => this.fetchAPI<T>(path))
+        return this._artists ??= new ArtistsResource(<T>(path: string, opts?: BunFetchRequestInit) => this.fetchAPI<T>(path, opts))
     }
 
     get musicVideos() {
-        return this._musicVideos ??= new MusicVideosResource(<T>(path: string) => this.fetchAPI<T>(path))
+        return this._musicVideos ??= new MusicVideosResource(<T>(path: string, opts?: BunFetchRequestInit) => this.fetchAPI<T>(path, opts))
     }
 
     get storefronts() {
-        return this._storefronts ??= new StorefrontsResource(<T>(path: string) => this.fetchAPI<T>(path))
+        return this._storefronts ??= new StorefrontsResource(<T>(path: string, opts?: BunFetchRequestInit) => this.fetchAPI<T>(path, opts))
     }
 
     get me() {
         return this._me ??= new MeResource(
-            <T>(path: string) => this.fetchAPI<T>(path),
+            <T>(path: string, opts?: BunFetchRequestInit) => this.fetchAPI<T>(path, opts),
             () => this.mediaUserToken,
         )
     }
