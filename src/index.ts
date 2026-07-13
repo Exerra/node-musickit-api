@@ -211,9 +211,14 @@ export class MusicKit {
 }
 
 // Export every type from the types folder for convenience
-export * from "./types/album"
-export * from "./types/artist"
-export * from "./types/song"
-export * from "./types/musicvideo"
-export * from "./types/storefront"
-export * from "./types/search"
+// Added .js to avoid issues with moduleResolution: "NodeNext" (ESM mode)
+export * from "./types/album.js"
+export * from "./types/artist.js"
+export * from "./types/song.js"
+export * from "./types/musicvideo.js"
+export * from "./types/storefront.js"
+export * from "./types/search.js"
+export * from "./types/heavyrotation.js"
+export * from "./types/libraryplaylist.js"
+export * from "./types/play.js"
+export * from "./types/relationships.js"
