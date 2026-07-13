@@ -4,19 +4,19 @@ export interface LibraryPlaylistRaw {
     id:         string;
     type:       string;
     href:       string;
-    attributes: Attributes;
+    attributes: LibraryPlaylistAttributes;
 }
 
 export type LibraryPlaylist = {
     id:         string;
     type:       string;
-} & Attributes
+} & LibraryPlaylistAttributes
 
-export interface Attributes {
-    artwork:           Artwork;
+export interface LibraryPlaylistAttributes {
+    artwork:           LibraryPlaylistArtwork;
     canEdit:           boolean;
     dateAdded:         string;
-    description:       Description;
+    description:       LibraryPlaylistDescription;
     hasCatalog:        boolean;
     isPublic:          boolean;
     lastModifiedDate:  string;
@@ -24,12 +24,12 @@ export interface Attributes {
     playParams:        PlayParams & { globalId?: string; isLibrary?: boolean; };
 }
 
-export interface Artwork {
+export interface LibraryPlaylistArtwork {
     height:     number;
     url:        string;
     width:      number;
 }
 
-export interface Description {
+export interface LibraryPlaylistDescription {
     standard:   string;
 }

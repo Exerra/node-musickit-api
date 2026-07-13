@@ -5,21 +5,21 @@ export interface SongRaw {
     id:         string;
     type:       string;
     href:       string;
-    attributes: Attributes;
+    attributes: SongAttributes;
 }
 
 export type Song = {
     id:         string;
     type:       string;
-} & Attributes
+} & SongAttributes
 
 export type SongRelationshipsRaw = Partial<Record<"albums" | "artists", GenericRelationshipRaw>>
 export type SongRelationships = Partial<Record<"albums" | "artists", GenericRelationship>>
 
-export interface Attributes {
+export interface SongAttributes {
     albumName:            string;
     artistName:           string;
-    artwork:              Artwork;
+    artwork:              SongArtwork;
     composerName:         string;
     discNumber:           number;
     durationInMillis:     number;
@@ -29,13 +29,13 @@ export interface Attributes {
     isrc:                 string;
     name:                 string;
     playParams:           PlayParams;
-    previews:             Preview[];
+    previews:             SongPreview[];
     releaseDate:          string;//Date;
     trackNumber:          number;
     url:                  string;
 }
 
-export interface Artwork {
+export interface SongArtwork {
     bgColor:    string;
     height:     number;
     textColor1: string;
@@ -46,6 +46,6 @@ export interface Artwork {
     width:      number;
 }
 
-export interface Preview {
+export interface SongPreview {
     url: string;
 }

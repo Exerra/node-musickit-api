@@ -2,15 +2,15 @@ export interface StorefrontRaw {
     id:         string;
     type:       string;
     href:       string;
-    attributes: Attributes;
+    attributes: StorefrontAttributes;
 }
 
 export type Storefront = {
     id: string;
     type: string;
-} & Attributes
+} & StorefrontAttributes
 
-export interface Attributes {
+export interface StorefrontAttributes {
     explicitContentPolicy:  string;
     name:                   string;
     defaultLanguageTag:     string;

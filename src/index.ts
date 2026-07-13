@@ -209,3 +209,11 @@ export class MusicKit {
     }
 
 }
+
+// Export every type from the types folder for convenience
+export * from "./types/album"
+export * from "./types/artist"
+export * from "./types/song"
+export * from "./types/musicvideo"
+export * from "./types/storefront"
+export * from "./types/search"
