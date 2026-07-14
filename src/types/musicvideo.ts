@@ -4,32 +4,33 @@ export interface MusicVideoRaw {
     id:         string;
     type:       string;
     href:       string;
-    attributes: Attributes;
+    attributes: MusicVideoAttributes;
 }
 
 export type MusicVideo = {
     id:         string;
-} & Attributes
+    type:       string;
+} & MusicVideoAttributes
 
 export type MusicVideoRelationshipsRaw = Partial<Record<"albums" | "artists", GenericRelationshipRaw>>
 export type MusicVideoRelationships = Partial<Record<"albums" | "artists", GenericRelationship>>
 
-export interface Attributes {
+export interface MusicVideoAttributes {
     artistName:       string;
-    artwork:          Artwork;
+    artwork:          MusicVideoArtwork;
     durationInMillis: number;
     genreNames:       string[];
     has4K:            boolean;
     hasHDR:           boolean;
     isrc:             string;
     name:             string;
-    playParams:       PlayParams;
+    playParams:       MusicVideoPlayParams;
     previews:         Preview[];
     releaseDate:      string;//Date;
     url:              string;
 }
 
-export interface Artwork {
+export interface MusicVideoArtwork {
     bgColor:    string;
     height:     number;
     textColor1: string;
@@ -40,13 +41,13 @@ export interface Artwork {
     width:      number;
 }
 
-export interface PlayParams {
+export interface MusicVideoPlayParams {
     id:   string;
     kind: string;
 }
 
 export interface Preview {
-    artwork: Artwork;
+    artwork: MusicVideoArtwork;
     hlsUrl:  string;
     url:     string;
 }

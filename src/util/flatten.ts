@@ -1,7 +1,16 @@
-export function flattenItem<T extends { id: string; attributes: Record<string, any>; relationships?: Record<string, any> }>(
+export function flattenItem<T extends {
+    id: string;
+    type: string;
+    attributes: Record<string, any>;
+    relationships?: Record<string, any>;
+}>(
     item: T
-): { id: string } & T['attributes'] & { relationships?: Record<string, any> } {
-    let result: any = { id: item.id, ...item.attributes }
+): { id: string; type: T['type'] } & T['attributes'] & { relationships?: Record<string, any> } {
+    let result: any = {
+        id: item.id,
+        type: item.type,
+        ...item.attributes,
+    }
 
     if (item.relationships) {
         for (const key of Object.keys(item.relationships)) {

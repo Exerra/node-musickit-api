@@ -11,7 +11,11 @@ export class ArtistsResource {
     async get(storefront: string, id: string, raw = false) {
         const res = await this.fetch<(ArtistRaw)[]>(`/catalog/${storefront}/artists/${id}`)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -20,7 +24,7 @@ export class ArtistsResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 }

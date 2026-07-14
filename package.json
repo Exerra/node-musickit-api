@@ -1,6 +1,6 @@
 {
   "name": "node-musickit-api",
-  "version": "3.0.1",
+  "version": "3.1.0-next.5",
   "description": "A wrapper for the Apple Music API written in NodeJS",
   "type": "module",
   "main": "./dist/index.js",
@@ -26,7 +26,7 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": ">=5"
   },
   "repository": {
     "type": "git",

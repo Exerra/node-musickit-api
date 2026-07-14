@@ -4,13 +4,14 @@ export interface ArtistRaw {
     id:         string;
     type:       string;
     href:       string;
-    attributes: Attributes;
+    attributes: ArtistAttributes;
     relationships: ArtistRelationshipsRaw & { albums: { next: string } };
 }
 
 export type Artist = {
     id:         string;
-} & Attributes & { relationships: ArtistRelationships }
+    type:       string;
+} & ArtistAttributes & { relationships: ArtistRelationships }
 
 export interface ArtistRelationships {
     albums: GenericRelationship;
@@ -20,15 +21,15 @@ export interface ArtistRelationshipsRaw {
     albums: GenericRelationshipRaw;
 }
 
-export interface Attributes {
-    artwork:        Artwork;
-    editorialNotes: EditorialNotes;
+export interface ArtistAttributes {
+    artwork:        ArtistArtwork;
+    editorialNotes: ArtistEditorialNotes;
     genreNames:     string[];
     name:           string;
     url:            string;
 }
 
-export interface Artwork {
+export interface ArtistArtwork {
     bgColor:    string;
     height:     number;
     textColor1: string;
@@ -39,7 +40,7 @@ export interface Artwork {
     width:      number;
 }
 
-export interface EditorialNotes {
+export interface ArtistEditorialNotes {
     name:     string;
     short:    string;
     standard: string;

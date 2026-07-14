@@ -10,7 +10,11 @@ export class AlbumsResource {
     async get(storefront: string, id: string, raw = false) {
         const res = await this.fetch<(AlbumRaw & {relationships: AlbumRelationshipsRaw})[]>(`/catalog/${storefront}/albums/${id}`)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -19,7 +23,7 @@ export class AlbumsResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 
@@ -28,7 +32,11 @@ export class AlbumsResource {
     async getByUPC(storefront: string, upc: string, raw = false) {
         const res = await this.fetch<(AlbumRaw & {relationships: AlbumRelationshipsRaw})[]>(`/catalog/${storefront}/albums?filter[upc]=${encodeURIComponent(upc)}`)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -37,7 +45,7 @@ export class AlbumsResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 }

@@ -24,7 +24,11 @@ export class StorefrontsResource {
 
         const res = await this.fetch<StorefrontRaw[]>("/storefronts" + queryParams)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -33,7 +37,7 @@ export class StorefrontsResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 
@@ -44,7 +48,11 @@ export class StorefrontsResource {
 
         const res = await this.fetch<StorefrontRaw[]>(`/storefronts/${storefront}` + queryParams)
 
-        if (raw || res.error) {
+        if (raw) {
+            return res;
+        }
+
+        if (res.error !== null) {
             return res;
         }
 
@@ -53,7 +61,7 @@ export class StorefrontsResource {
         return {
             status: res.status,
             data: items,
-            error: res.error
+            error: null
         }
     }
 }

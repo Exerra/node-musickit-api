@@ -5,12 +5,13 @@ export interface AlbumRaw {
     id:         string;
     type:       string;
     href:       string;
-    attributes: Attributes;
+    attributes: AlbumAttributes;
 }
 
 export type Album = {
     id:         string;
-} & Attributes
+    type:       string;
+} & AlbumAttributes
 
 export type AlbumRelationships = {
     artists: GenericRelationship;
@@ -22,11 +23,11 @@ export type AlbumRelationshipsRaw = {
     tracks: TrackRelationshipRaw;
 }
 
-export interface Attributes {
+export interface AlbumAttributes {
     artistName:          string;
-    artwork:             Artwork;
+    artwork:             AlbumArtwork;
     copyright:           string;
-    editorialNotes:      EditorialNotes;
+    editorialNotes:      AlbumEditorialNotes;
     genreNames:          string[];
     isCompilation:       boolean;
     isComplete:          boolean;
@@ -41,7 +42,7 @@ export interface Attributes {
     url:                 string;
 }
 
-export interface Artwork {
+export interface AlbumArtwork {
     bgColor:    string;
     height:     number;
     textColor1: string;
@@ -52,7 +53,7 @@ export interface Artwork {
     width:      number;
 }
 
-export interface EditorialNotes {
+export interface AlbumEditorialNotes {
     short:    string;
     standard: string;
     tagline:  string;
